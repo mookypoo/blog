@@ -1,0 +1,10 @@
+spring:
+  'profiles.active': dev
+  config: 
+    import: secrets.yml
+
+  jpa:
+    show-sql: true
+
+mooky:
+  endpoint: 
