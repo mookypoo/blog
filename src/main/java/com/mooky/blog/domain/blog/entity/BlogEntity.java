@@ -1,5 +1,7 @@
 package com.mooky.blog.domain.blog.entity;
 
+import java.time.LocalDateTime;
+
 import com.mooky.blog.domain.blog.vo.BlogReq;
 
 import jakarta.persistence.Column;
@@ -8,12 +10,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+// TODO edit & comments
 
 @Entity
 @Table(name = "blog")
@@ -33,29 +36,22 @@ public class BlogEntity {
   private String content;
 
   @Column(nullable = false)
-  private long userId;
+  private long authorId;
 
-  // @OneToOne(optional = false)
-  // @JoinColumn(name = "CUSTREC_ID", unique = true, nullable = false, updatable = false)
-  // public CustomerRecord getCustomerRecord() {
-  //   return customerRecord;
-  // }
+  @OneToOne
+  @JoinColumn(name = "authorId", referencedColumnName = "user_id", insertable = false, updatable = false)
+  private BlogCreaterEntity author;
 
-  // // On CustomerRecord class:
+  private LocalDateTime createdAt;
 
-  // @OneToOne(optional = false, mappedBy = "customerRecord")
-  // public Customer getCustomer() {
-  //   return customer;
-  // }
+  private String createdBy = "SYSTEM";
 
-  // @OneToMany
-  // @JoinColumn(name = "id", updatable = false)
-  // private BlogCreaterEntity user;
+  private LocalDateTime modifiedAt;
 
   public BlogEntity(BlogReq req) {
     this.title = req.getTitle();
     this.content = req.getContent();
-    this.userId = req.getUserId();
+    this.authorId = req.getUserId();
   }
 
 }

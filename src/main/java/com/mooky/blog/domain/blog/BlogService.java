@@ -19,15 +19,17 @@ public class BlogService {
 
   public BlogDetails saveBlogAndReturnBlogDetails(BlogReq blogReq) {
     BlogEntity savedBlog = this.blogRepository.save(new BlogEntity(blogReq));
-    
     return new BlogDetails(savedBlog);
   }
 
-  public BlogDetails findBlogAndReturnBlogDetails(long blogId) {
-    BlogEntity blogEntity = this.blogRepository.findById(blogId).orElseThrow(() -> 
-      new NotFoundException("blog_not_found", "없는 블로그입니다.", String.valueOf(blogId), null));
-    
+  public BlogDetails findBlogAndReturnBlogDetails(Long blogId) {
+    BlogEntity blogEntity = this.blogRepository.findById(blogId)
+        .orElseThrow(() -> new NotFoundException("blog_not_found", "없는 블로그입니다.", String.valueOf(blogId), null));
     return new BlogDetails(blogEntity);
+  }
+  
+  public BlogDetails editBlogAndReturnBlogDetails(Long blogId, BlogReq blogReq) {
+
   }
 
 }

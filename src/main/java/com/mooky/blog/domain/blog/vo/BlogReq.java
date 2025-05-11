@@ -1,32 +1,21 @@
 package com.mooky.blog.domain.blog.vo;
 
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.jackson.Jacksonized;
 
 @Getter
-//@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@Jacksonized
 public class BlogReq {
   
-  @Size(max = 50, min = 1)
+  @Size(max = 50, min = 1, message = "title must be between 1 and 50 characters")
   private final String title;
   
-  @Size(min = 1)
+  @Size(min = 1, message = "you must have blog content")
   private final String content;
 
-  private final long userId;
+  private final long userId; // TODO change to accessToken & cross check
 
-  public BlogReq(String title, String content, long userId) {
-    this.title = title;
-    this.content = content;
-    this.userId = userId;
-  }
-
-  public BlogReq() {
-    this.title = "";
-    this.content = "";
-    this.userId = 0;
-  }
 }

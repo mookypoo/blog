@@ -27,15 +27,19 @@ public class ApiResponse {
   }
 
   // error
-  private ApiResponse(ApiException ex) {
+  private ApiResponse(String error, String errorCode, String errorMessage) {
     this.result = "error";
-    this.error = ex.getError();
-    this.errorCode = ex.getErrorCode();
-    this.errorMessage = ex.getErrorMessage();
+    this.error = error;
+    this.errorCode = errorCode;
+    this.errorMessage = errorMessage;
   }
 
   static public ApiResponse error(ApiException ex) {
-    return new ApiResponse(ex);
+    return new ApiResponse(ex.getError(), ex.getErrorCode(), ex.getErrorMessage());
+  }
+
+  static public ApiResponse error(String error, String errorCode, String errorMessage) {
+    return new ApiResponse(error, errorCode, errorMessage);
   }
  
   public String toString() {

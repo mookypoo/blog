@@ -1,24 +1,30 @@
 package com.mooky.blog.domain.blog.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.mooky.blog.domain.blog.entity.BlogEntity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
+@JsonInclude(Include.NON_NULL)
+// when creating/updating blog, only returns id, title, content 
 public class BlogDetails {
-  private final long id;
+  private final long blogId;
   private final String title;
   private final String content;
-  //private final String username;
-  private final long userId;
+  private final String authorUsername;
+  private final Long authorId;
 
   public BlogDetails(BlogEntity blogEntity) {
-    this.id = blogEntity.getId();
+    this.blogId = blogEntity.getId();
     this.title = blogEntity.getTitle();
     this.content = blogEntity.getContent();
-    //this.username = blogEntity.getUser().getUsername();
-    this.userId = blogEntity.getUserId();
+    this.authorUsername = blogEntity.getAuthor() == null ? null : blogEntity.getAuthor().getUsername();
+    this.authorId = blogEntity.getAuthorId();
   }
 }

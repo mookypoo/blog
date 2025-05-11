@@ -2,10 +2,9 @@ package com.mooky.blog.domain.blog.entity;
 
 import com.mooky.blog.domain.user.entity.UserEntity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,9 +16,12 @@ import lombok.NoArgsConstructor;
 public class BlogCreaterEntity {
  
   @Id
+  @Column(name = "user_id")
   private Long id;
 
   private String username;
+
+  // TODO profile image
 
   // for testing
   public BlogCreaterEntity(UserEntity user) {
