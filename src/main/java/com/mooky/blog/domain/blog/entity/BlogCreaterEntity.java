@@ -4,6 +4,8 @@ import com.mooky.blog.domain.user.entity.UserEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +15,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class BlogCreaterEntity {
+ 
   @Id
-  private long id;
+  private Long id;
 
   private String username;
 

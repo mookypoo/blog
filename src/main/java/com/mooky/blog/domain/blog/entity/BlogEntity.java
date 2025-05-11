@@ -1,7 +1,6 @@
 package com.mooky.blog.domain.blog.entity;
 
 import com.mooky.blog.domain.blog.vo.BlogReq;
-import com.mooky.blog.domain.user.entity.UserEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,13 +8,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,7 +23,8 @@ public class BlogEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  @Column(name = "blog_id")
+  private Long id;
 
   @Size(min = 1, max = 50)
   private String title;
@@ -38,9 +35,22 @@ public class BlogEntity {
   @Column(nullable = false)
   private long userId;
 
-  @OneToOne(optional = false)
-  @JoinColumn(name = "id")
-  private BlogCreaterEntity user;
+  // @OneToOne(optional = false)
+  // @JoinColumn(name = "CUSTREC_ID", unique = true, nullable = false, updatable = false)
+  // public CustomerRecord getCustomerRecord() {
+  //   return customerRecord;
+  // }
+
+  // // On CustomerRecord class:
+
+  // @OneToOne(optional = false, mappedBy = "customerRecord")
+  // public Customer getCustomer() {
+  //   return customer;
+  // }
+
+  // @OneToMany
+  // @JoinColumn(name = "id", updatable = false)
+  // private BlogCreaterEntity user;
 
   public BlogEntity(BlogReq req) {
     this.title = req.getTitle();

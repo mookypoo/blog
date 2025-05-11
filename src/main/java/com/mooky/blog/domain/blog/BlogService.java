@@ -15,15 +15,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class BlogService {
 
-  private final BlogRepository BlogRepository;
+  private final BlogRepository blogRepository;
 
-  public long saveBlogAndReturnId(BlogReq blogReq) {
-    BlogEntity savedBlog = this.BlogRepository.save(new BlogEntity(blogReq));
-    return savedBlog.getId();
+  public BlogDetails saveBlogAndReturnBlogDetails(BlogReq blogReq) {
+    BlogEntity savedBlog = this.blogRepository.save(new BlogEntity(blogReq));
+    
+    return new BlogDetails(savedBlog);
   }
 
-  public BlogDetails findBlog(int blogId) {
-    BlogEntity blogEntity = this.BlogRepository.findById(blogId).orElseThrow(() -> 
+  public BlogDetails findBlogAndReturnBlogDetails(long blogId) {
+    BlogEntity blogEntity = this.blogRepository.findById(blogId).orElseThrow(() -> 
       new NotFoundException("blog_not_found", "없는 블로그입니다.", String.valueOf(blogId), null));
     
     return new BlogDetails(blogEntity);
