@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mooky.blog.domain.blog.vo.Blog;
+import com.mooky.blog.domain.blog.vo.BlogDetails;
 import com.mooky.blog.global.ApiResponse;
 
 import lombok.AccessLevel;
@@ -24,7 +24,7 @@ public class BlogController {
   @GetMapping("/{blogId}")
   public ApiResponse getBlog(@PathVariable("blogId") int blogId) {
     log.info("getting blog");
-    Blog blog = this.blogService.findBlog(blogId);
+    BlogDetails blog = this.blogService.findBlog(blogId);
     return ApiResponse.ok(blog);
   }
   

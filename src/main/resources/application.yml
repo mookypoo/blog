@@ -3,6 +3,9 @@ spring:
   config: 
     import: secrets.yml
 
+  sql:
+    'init.mode': always
+
   jpa:
     show-sql: true
 

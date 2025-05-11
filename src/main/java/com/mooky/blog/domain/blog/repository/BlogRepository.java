@@ -1,4 +1,4 @@
-package com.mooky.blog.domain.blog;
+package com.mooky.blog.domain.blog.repository;
 
 import java.util.Optional;
 

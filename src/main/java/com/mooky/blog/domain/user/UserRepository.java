@@ -6,6 +6,6 @@ import com.mooky.blog.domain.user.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long>{
   
-  
+
 
 }

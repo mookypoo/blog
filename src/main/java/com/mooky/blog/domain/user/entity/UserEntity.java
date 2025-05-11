@@ -20,9 +20,7 @@ import lombok.NoArgsConstructor;
 
 @Table(name = "user")
 @Entity
-@Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @SuppressWarnings("unused")
 public class UserEntity {
 
@@ -42,10 +40,10 @@ public class UserEntity {
   private @Getter SignUpType signUpType;
 
   @Column(length = 50)
-  private String ssoId;
+  private @Getter String ssoId;
 
   @Column(unique = true, length = 200)
-  private String email;
+  private @Getter String email;
 
   @Basic(fetch = FetchType.LAZY) // large Serializable object 
   private @Getter String password;
@@ -54,14 +52,12 @@ public class UserEntity {
     NORMAL, PAUSED, WITHDRAWN
   }
 
-  @Builder.Default
   private UserStatus status = UserStatus.NORMAL;
 
   @Column(updatable = false, insertable = false) // TODO - transient
   private LocalDateTime createdAt;
 
   @Column(length = 20)
-  @Builder.Default
   private String createdBy = "SYSTEM";
 
   private LocalDateTime modifiedAt;
@@ -72,6 +68,51 @@ public class UserEntity {
   public String toString() {
     return "User [id=" + id + ", signUpType=" + signUpType + ", ssoId=" + ssoId + ", email=" + email
         + ",username=" + username + "]";
+  }
+
+  public UserEntity(Builder builder) {
+    this.username = builder.username;
+    this.signUpType = builder.signUpType;
+    this.email = builder.email;
+    this.ssoId = builder.ssoId;
+    this.password = builder.password;
+  }
+
+  public static class Builder {
+    private String username;
+    private SignUpType signUpType;
+    private String email;
+    private String ssoId;
+    private String password;
+
+    public Builder username(String username) {
+      this.username = username;
+      return this;
+    }
+
+    public Builder signupType(SignUpType signUpType) {
+      this.signUpType = signUpType;
+      return this;
+    }
+
+    public Builder email(String email) {
+      this.email = email;
+      return this;
+    }
+    
+    public Builder ssoId(String ssoId) {
+      this.ssoId = ssoId;
+      return this;
+    }
+
+    public Builder password(String password) {
+      this.password = password;
+      return this;
+    }
+
+    public UserEntity build() {
+      return new UserEntity(this);
+    }
   }
 
 }

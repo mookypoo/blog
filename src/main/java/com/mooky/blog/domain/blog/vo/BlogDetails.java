@@ -7,14 +7,14 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public class Blog {
+public class BlogDetails {
   private final long id;
   private final String title;
   private final String content;
   private final String username;
   private final long userId;
 
-  public Blog(BlogEntity blogEntity) {
+  public BlogDetails(BlogEntity blogEntity) {
     this.id = blogEntity.getId();
     this.title = blogEntity.getTitle();
     this.content = blogEntity.getContent();
