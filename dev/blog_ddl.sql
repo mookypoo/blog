@@ -3,10 +3,11 @@ create or replace table mooky.blog
   blog_id       bigint                primary key auto_increment comment 'blog id',
   title         varchar(100)          not null comment '블로그 제목',
   content       varchar(200)          not null comment '블로그 콘텐트',
-  user_id       bigint                not null comment '블로그 쓴 사용자 id',
+  author_id     bigint                not null comment '블로그 쓴 사용자 id',
   created_at    datetime              default current_timestamp(),
   created_by    varchar(20)           default 'SYSTEM',
   modified_at   datetime              comment '업데이트 일시',
+  modified_by   varchar(20)           comment '사용자 AUTHOR'
   constraint FK_blog_user_id foreign key (user_id) references mooky.user (id)
 )
   comment '블로그';

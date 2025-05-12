@@ -47,7 +47,8 @@ public class BlogController {
   public ApiResponse editBlog(@Valid @RequestBody BlogReq blogReq, @PathVariable("blogId") int blogId) {
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     validator.validate(blogReq, SaveBlog.class);
-
+    BlogDetails blog = this.blogService.editBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId), blogReq);
+    return ApiResponse.ok(blog);
   }
   
 }

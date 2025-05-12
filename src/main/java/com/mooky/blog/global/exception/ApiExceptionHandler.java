@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.mooky.blog.global.ApiResponse;
+import com.mooky.blog.global.exception.ApiException.NotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +23,10 @@ public class ApiExceptionHandler {
     int status = 400;
     log.warn("[{}] {} [{}]", ex.getClass().getSimpleName(), ex.toString(), ex.getStackTrace()[0].toString());
 
+    if (ex instanceof NotFoundException) {
+      status = 404;
+    }
+      
     return ResponseEntity.status(status).body(ApiResponse.error(ex));
   }
 

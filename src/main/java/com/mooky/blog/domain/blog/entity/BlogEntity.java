@@ -2,6 +2,8 @@ package com.mooky.blog.domain.blog.entity;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.mooky.blog.domain.blog.vo.BlogReq;
 
 import jakarta.persistence.Column;
@@ -35,19 +37,22 @@ public class BlogEntity {
   @Size(min = 1)
   private String content;
 
-  @Column(nullable = false)
+  @Column(nullable = false, updatable = false)
   private long authorId;
 
   @OneToOne
   @JoinColumn(name = "authorId", referencedColumnName = "user_id", insertable = false, updatable = false)
   private BlogCreaterEntity author;
 
+  @Column(insertable = false, updatable = false)
+  @CreationTimestamp // need this in order to retrieve current_timestamp()
   private LocalDateTime createdAt;
 
   private String createdBy = "SYSTEM";
 
   private LocalDateTime modifiedAt;
 
+  // TODO don't need if i dont use jpa repository save 
   public BlogEntity(BlogReq req) {
     this.title = req.getTitle();
     this.content = req.getContent();

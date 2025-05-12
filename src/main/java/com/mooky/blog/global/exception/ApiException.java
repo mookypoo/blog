@@ -1,8 +1,17 @@
 package com.mooky.blog.global.exception;
 
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * @param error         describes the error in brief the error (eg. blog_not_found)
+ * @param errorMessage  describes the error in detail
+ * @param errorCode     error code : begins with COM_###
+ * @param errorValue    describes what value caused the error
+ * @param errorTitle    for logging purposes - begins the log with [errorTitle]
+ */
 @RequiredArgsConstructor
 public class ApiException extends RuntimeException {
   
@@ -14,6 +23,10 @@ public class ApiException extends RuntimeException {
   private final String errorTitle;
 
   public static class NotFoundException extends ApiException {
+    /**
+     * when a requested resource is not found; 
+     * @see ApiException
+     */
     public NotFoundException(String error, String errorMessage, String errorValue, String errorTitle) {
       super(error, errorMessage, "COM_004", errorValue, errorTitle);
     }
