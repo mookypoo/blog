@@ -55,7 +55,7 @@ public class UserEntity {
 
   private UserStatus status = UserStatus.NORMAL;
 
-  @Column(updatable = false, insertable = false) // TODO - transient
+  @Column(updatable = false, insertable = false) 
   private LocalDateTime createdAt;
 
   @Column(length = 20)

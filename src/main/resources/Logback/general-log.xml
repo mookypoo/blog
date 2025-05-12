@@ -1,0 +1,19 @@
+<!-- logs everything, including http request, aspects etc  -->
+<included>
+  <appender name="GeneralLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/general/general-${DATE}.log</file>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <Pattern>%d %p %logger{36}.%M [%t] %m%n</Pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_DIR}/archived/general-log-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+        <maxFileSize>100MB</maxFileSize>
+        <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+  </appender>
+</included>

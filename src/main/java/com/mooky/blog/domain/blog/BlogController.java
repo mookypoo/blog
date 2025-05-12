@@ -1,5 +1,6 @@
 package com.mooky.blog.domain.blog;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,18 +17,14 @@ import com.mooky.blog.global.ApiResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 
-@Slf4j
 @RestController
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE) 
 @RequestMapping("${mooky.endpoint}/v1/blog")
 public class BlogController {
   
-  final private BlogService blogService;
+  @Autowired
+  private BlogService blogService;
   
   @GetMapping("/{blogId}")
   public ApiResponse getBlogDetails(@PathVariable("blogId") int blogId) {

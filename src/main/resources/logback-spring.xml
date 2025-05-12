@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_DIR" value="./logs"/>
+    <timestamp key="DATE" datePattern="yyyy-MM-dd" />
+    
+    <include resource="Logback/console-log.xml"/>
+    <include resource="Logback/general-log.xml"/>
+    <include resource="Logback/warn-log.xml"/>
+    <include resource="Logback/error-log.xml"/>
+
+    <!-- withhout logger scheme, appender is not referenced and therefore, not used  -->
+    <logger name="com.mooky.blog.global" additivity="false" level="debug">
+        <appender-ref ref="GeneralLog" />
+        <appender-ref ref="WarnLog" />
+        <appender-ref ref="ErrorLog" />
+        <springProfile name="dev">
+          <appender-ref ref="MookyConsole" />
+        </springProfile>
+    </logger>
+
+      <logger name="com.mooky.blog.domain" additivity="false" level="debug">
+        <appender-ref ref="GeneralLog" />
+        <appender-ref ref="WarnLog" />
+        <appender-ref ref="ErrorLog" />
+        <springProfile name="dev">
+          <appender-ref ref="MookyConsole" />
+        </springProfile>
+    </logger>
+
+    <root level="warn">
+      <appender-ref ref="WarnLog" />
+      <appender-ref ref="ErrorLog" />
+    </root>
+
+</configuration>

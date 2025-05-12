@@ -1,7 +1,5 @@
 package com.mooky.blog.global.exception;
 
-import org.springframework.web.bind.annotation.ResponseStatus;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

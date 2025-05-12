@@ -1,14 +1,14 @@
 spring:
-  'profiles.active': dev
+  profiles: 
+    active:
+      - dev
+    
   config: 
     import: secrets.yml
 
   sql:
     'init.mode': always
     
-
-  jpa:
-    show-sql: true
 
 mooky:
   endpoint: 

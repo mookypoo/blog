@@ -2,7 +2,6 @@ package com.mooky.blog.domain.blogTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
 import java.util.Map;
 
@@ -19,7 +18,6 @@ import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.utility.DockerImageName;
 
 import com.mooky.blog.domain.blog.BlogService;
-import com.mooky.blog.domain.blog.vo.BlogDetails;
 import com.mooky.blog.domain.blog.vo.BlogReq;
 import com.mooky.blog.domain.user.UserRepository;
 import com.mooky.blog.domain.user.entity.UserEntity;

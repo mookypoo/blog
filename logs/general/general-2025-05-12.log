@@ -1,0 +1,8 @@
+2025-05-12 23:46:00,659 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-2] [HttpRequest] [GET] /v1/blog/2 [userId: null] [requestId: postman] 
+2025-05-12 23:46:00,710 WARN c.m.b.g.e.ApiExceptionHandler.handleApiException [http-nio-8080-exec-2] [NotFoundException] [errorValue=2, error=blog_not_found, errorMessage=없는 블로그입니다, errorCode=COM_004] [com.mooky.blog.domain.blog.BlogService.lambda$0(BlogService.java:97)]
+2025-05-12 23:46:53,690 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [GET] /v1/blog/1 [userId: null] [requestId: postman] 
+2025-05-12 23:47:45,695 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [GET] /v1/blog/33 [userId: null] [requestId: postman] 
+2025-05-12 23:50:26,824 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [POST] /v1/blog [userId: null] [requestId: null] [class com.mooky.blog.domain.blog.vo.BlogReq]
+2025-05-12 23:50:31,726 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-4] [HttpRequest] [POST] /v1/blog [userId: null] [requestId: null] [class com.mooky.blog.domain.blog.vo.BlogReq]
+2025-05-12 23:53:06,653 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [POST] /v1/blog [userId: null] [requestId: null] [class com.mooky.blog.domain.blog.vo.BlogReq]
+2025-05-12 23:55:01,109 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [POST] /v1/blog [userId: null] [requestId: null] [class com.mooky.blog.domain.blog.vo.BlogReq]

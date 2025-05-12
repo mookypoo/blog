@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.mooky.blog.domain.blog.vo.BlogDetails;
-import com.mooky.blog.domain.blog.vo.BlogReq;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
@@ -14,9 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedNativeQuery;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
@@ -40,7 +37,6 @@ import lombok.NoArgsConstructor;
             @ColumnResult(name = "modifiedAt", type = LocalDateTime.class),
           }
   ))
-
 @NamedNativeQuery(name = "BlogEntityWithNativeQuery.findBlogDetails", query = """
         SELECT b.blog_id as blogId,
           b.title,
