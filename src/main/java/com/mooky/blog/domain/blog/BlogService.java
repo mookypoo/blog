@@ -84,14 +84,12 @@ public class BlogService {
    * (2) or use entityManager to refresh the entity
    */ 
 
-  @Transactional
-  public BlogDetails saveBlogAndReturnBlogDetails(BlogReq blogReq) {
-    BlogEntity savedBlog = this.blogRepository.save(new BlogEntity(blogReq));
-  
-    entityManager.refresh(savedBlog);
-    //BlogEntity savedBlog = this.blogRepository.saveBlog(blogReq.getUserId(), blogReq.getTitle(), blogReq.getContent());
-    //log.info("saved blog author", savedBlog.getAuthor().getUsername());
-    return new BlogDetails(savedBlog);
+   
+  public BlogDetails findBlogUsingNativeQuery(Long blogId) {
+    BlogDetails blogDetails = this.blogRepository.findBlogDetailsWithNativeQuery(blogId);
+    if (blogDetails == null)
+      throw new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId), null);
+    return blogDetails;
   }
 
   public BlogDetails findBlogAndReturnBlogDetails(Long blogId) {
@@ -99,16 +97,21 @@ public class BlogService {
         .orElseThrow(() -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId), null));
     return new BlogDetails(blogEntity);
   }
+
+  @Transactional
+  public BlogDetails saveBlogAndReturnBlogDetails(BlogReq blogReq) {
+    BlogEntity savedBlog = this.blogRepository.save(new BlogEntity(blogReq));
+    this.entityManager.refresh(savedBlog);
+    return new BlogDetails(savedBlog);
+  }
   
   public BlogDetails editBlogAndReturnBlogDetails(Long blogId, BlogReq blogReq) {
-    
     int numOfEditedRows = this.blogRepository.editBlog(blogId, blogReq.getTitle(), blogReq.getContent());
     if (numOfEditedRows == 0) {
       throw new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId), null);
     }
     Optional<BlogEntity> blogEntity = this.blogRepository.findById(blogId);
     return new BlogDetails(blogEntity.get());
-  
   }
 
 }

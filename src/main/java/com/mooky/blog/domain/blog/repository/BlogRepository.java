@@ -8,17 +8,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.mooky.blog.domain.blog.entity.BlogEntity;
-import com.mooky.blog.domain.blog.vo.BlogReq;
+import com.mooky.blog.domain.blog.vo.BlogDetails;
 
 import jakarta.transaction.Transactional;
 
-public interface BlogRepository extends JpaRepository<BlogEntity, Long>{
-
-  //BlogEntity save();
-
-  // @Modifying
-  // @Query(value = "INSERT INTO blog (author_id, title, content) values (:authorId, :title, :content)", nativeQuery = true)
-  // BlogEntity saveBlog(@Param("authorId") Long authorId, @Param("title") String title, @Param("content") String content);
+public interface BlogRepository extends JpaRepository<BlogEntity, Long> {
+  /**
+   * uses native query (blog/entity/BlogEntityWithNativeQuery) to join Blog & User
+   * and return a DTO right away
+   * 
+   * @param blogId
+   * @return BlogDetails (instead of Optional BlogEntity)
+   */
+  @Query(nativeQuery = true, name = "BlogEntityWithNativeQuery.findBlogDetails")
+  BlogDetails findBlogDetailsWithNativeQuery(@Param("blogId") Long blogId);
 
   // TODO check if requesting user is same as author 
   @Modifying
@@ -27,8 +30,3 @@ public interface BlogRepository extends JpaRepository<BlogEntity, Long>{
   int editBlog(@Param("blogId") Long blogId, @Param("title") String title, @Param("content") String content);
 
 }
-
-
-// @Query("SELECT profileName FROM BizAdmin WHERE profileName=:profileName")
-// Optional<String> unavailableProfileName(@Param("profileName") String profileName)
-// ;

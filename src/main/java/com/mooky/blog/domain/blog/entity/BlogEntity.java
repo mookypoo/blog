@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 // TODO edit & comments
 
 @Entity
-@Table(name = "blog")
+@Table(name = "Blog")
 @Getter
 @NoArgsConstructor
 public class BlogEntity {

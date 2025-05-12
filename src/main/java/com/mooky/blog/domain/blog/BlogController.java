@@ -30,8 +30,15 @@ public class BlogController {
   final private BlogService blogService;
   
   @GetMapping("/{blogId}")
-  public ApiResponse getBlog(@PathVariable("blogId") int blogId) {
+  public ApiResponse getBlogDetails(@PathVariable("blogId") int blogId) {
     BlogDetails blog = this.blogService.findBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId));
+    return ApiResponse.ok(blog);
+  }
+
+
+  @GetMapping("/nativeQuery/{blogId}")
+  public ApiResponse getBlogDetailsWithNativeQuery(@PathVariable("blogId") int blogId) {
+    BlogDetails blog = this.blogService.findBlogUsingNativeQuery(Integer.toUnsignedLong(blogId));
     return ApiResponse.ok(blog);
   }
 
