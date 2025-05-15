@@ -29,12 +29,7 @@ public class BlogUserSignUpReq {
   private final String password;
 
   @AssertTrue(message = "필수 약관에 동의하셔야 회원으로 가입할 수 있습니다", groups = UserSignUpInfo.class)
-  private final boolean agreeToMookyTerms;
-
-  @AssertTrue(message = "필수 약관에 동의하셔야 회원으로 가입할 수 있습니다", groups = UserSignUpInfo.class)
-  private final boolean agreeToPrivacyTerms;
+  private final boolean agreeToTerms;
   
-  private final boolean agreeToEmailMarketing;
-
-  private final boolean agreeToSMSMarketing;
+  private final boolean agreeToMarketing;
 }

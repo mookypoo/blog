@@ -32,4 +32,11 @@
       <appender-ref ref="ErrorLog" />
     </root>
 
+       <!-- console log everything at INFO level-->
+    <springProfile name="dev">
+      <root level="info">
+        <appender-ref ref="Console" />
+      </root>
+    </springProfile>
+
 </configuration>

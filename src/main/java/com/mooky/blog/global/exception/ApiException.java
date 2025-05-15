@@ -41,6 +41,7 @@ public class ApiException extends RuntimeException {
     }
   }
 
+
   @Override
   public String toString() {
     String toString = "[errorValue=" + errorValue
