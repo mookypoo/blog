@@ -34,7 +34,6 @@ public class HttpLogger {
     if (!reqMethod.equals("GET") && body != null) {
       bodyString = "[" + body.getClass() + "]";
     }
-    log.debug(request.getHeader("x-request-id"));
     log.info("[HttpRequest] [" + reqMethod + "] " + request.getRequestURI() + pathParams
         + " [userId: " + this.getUserId(request.getHeader("authorization")) + "] [requestId: " + request
             .getHeader("x-request-id") + "] " + bodyString);

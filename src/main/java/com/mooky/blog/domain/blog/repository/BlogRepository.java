@@ -1,5 +1,7 @@
 package com.mooky.blog.domain.blog.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,7 +21,7 @@ public interface BlogRepository extends JpaRepository<BlogEntity, Long> {
    * @return BlogDetails (instead of Optional BlogEntity)
    */
   @Query(nativeQuery = true, name = "BlogEntityWithNativeQuery.findBlogDetails")
-  BlogDetails findBlogDetailsWithNativeQuery(@Param("blogId") Long blogId);
+  Optional<BlogDetails> findBlogDetailsWithNativeQuery(@Param("blogId") Long blogId);
 
   // TODO check if requesting user is same as author 
   @Modifying

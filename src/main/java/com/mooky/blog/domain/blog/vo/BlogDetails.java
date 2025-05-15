@@ -13,13 +13,13 @@ import lombok.Getter;
 @Getter
 @JsonInclude(Include.NON_NULL)
 public class BlogDetails {
-  private long blogId;
-  private String title;
-  private String content;
-  private String authorUsername;
-  private Long authorId;
-  private LocalDateTime createdAt;
-  private LocalDateTime modifiedAt;
+  private final long blogId;
+  private final String title;
+  private final String content;
+  private final String authorUsername;
+  private final Long authorId;
+  private final LocalDateTime createdAt;
+  private final LocalDateTime modifiedAt;
 
   public BlogDetails(BlogEntity blogEntity) {
     this.blogId = blogEntity.getId();

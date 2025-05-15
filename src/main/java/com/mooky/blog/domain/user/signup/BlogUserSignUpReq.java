@@ -1,0 +1,40 @@
+package com.mooky.blog.domain.user.signup;
+
+import com.mooky.blog.domain.user.constraints.PasswordConstraints;
+import com.mooky.blog.domain.user.constraints.UsernameConstraints;
+import com.mooky.blog.domain.user.constraints.groups.UserEmail;
+import com.mooky.blog.domain.user.constraints.groups.UserSignUpInfo;
+import com.mooky.blog.domain.user.constraints.groups.Username;
+
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Getter
+@NoArgsConstructor(force = true)
+@ToString
+public class BlogUserSignUpReq {
+
+  @Email(message = "invalid email format", groups = { UserEmail.class, UserSignUpInfo.class })
+  @Size(min = 1, groups = { UserEmail.class, UserSignUpInfo.class })
+  private final String email;
+
+  @UsernameConstraints(groups = { Username.class, UserSignUpInfo.class })
+  private final String username;
+
+  @PasswordConstraints(groups = { UserSignUpInfo.class })
+  private final String password;
+
+  @AssertTrue(message = "필수 약관에 동의하셔야 회원으로 가입할 수 있습니다", groups = UserSignUpInfo.class)
+  private final boolean agreeToMookyTerms;
+
+  @AssertTrue(message = "필수 약관에 동의하셔야 회원으로 가입할 수 있습니다", groups = UserSignUpInfo.class)
+  private final boolean agreeToPrivacyTerms;
+  
+  private final boolean agreeToEmailMarketing;
+
+  private final boolean agreeToSMSMarketing;
+}

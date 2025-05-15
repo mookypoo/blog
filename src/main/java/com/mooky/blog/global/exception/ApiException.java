@@ -25,8 +25,19 @@ public class ApiException extends RuntimeException {
      * when a requested resource is not found; 
      * @see ApiException
      */
-    public NotFoundException(String error, String errorMessage, String errorValue, String errorTitle) {
-      super(error, errorMessage, "COM_004", errorValue, errorTitle);
+    public NotFoundException(String error, String errorMessage, String errorValue) {
+      super(error, errorMessage, "COM_004", errorValue, null);
+    }
+  }
+
+  public static class InvalidBodyException extends ApiException {
+    /**
+     * when body values do not meet format requirements
+     * <p> eg) invalid username format
+     * @see ApiException
+     */
+    public InvalidBodyException(String error, String errorMessage, String errorValue) {
+      super(error, errorMessage, "COM_001", errorValue, null);
     }
   }
 

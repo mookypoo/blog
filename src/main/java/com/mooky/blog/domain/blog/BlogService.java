@@ -86,15 +86,15 @@ public class BlogService {
 
    
   public BlogDetails findBlogUsingNativeQuery(Long blogId) {
-    BlogDetails blogDetails = this.blogRepository.findBlogDetailsWithNativeQuery(blogId);
-    if (blogDetails == null)
-      throw new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId), null);
+    BlogDetails blogDetails = this.blogRepository.findBlogDetailsWithNativeQuery(blogId).orElseThrow(
+      () -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId))
+    );
     return blogDetails;
   }
 
   public BlogDetails findBlogAndReturnBlogDetails(Long blogId) {
     BlogEntity blogEntity = this.blogRepository.findById(blogId)
-        .orElseThrow(() -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId), null));
+        .orElseThrow(() -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId)));
     return new BlogDetails(blogEntity);
   }
 
@@ -108,7 +108,7 @@ public class BlogService {
   public BlogDetails editBlogAndReturnBlogDetails(Long blogId, BlogReq blogReq) {
     int numOfEditedRows = this.blogRepository.editBlog(blogId, blogReq.getTitle(), blogReq.getContent());
     if (numOfEditedRows == 0) {
-      throw new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId), null);
+      throw new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId));
     }
     Optional<BlogEntity> blogEntity = this.blogRepository.findById(blogId);
     return new BlogDetails(blogEntity.get());
