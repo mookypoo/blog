@@ -1,5 +1,8 @@
 package com.mooky.blog.global.exception;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -41,6 +44,23 @@ public class ApiExceptionHandler {
     }
     log.warn("[MethodArgumentNotValidException] {} [{}]", ex.getMessage(), this.getThrownFrom(ex.getStackTrace()));
     return ResponseEntity.status(400).body(ApiResponse.error("invalid_argument", "COM_001", message));
+  }
+
+
+  @ExceptionHandler(SQLException.class)
+  public ResponseEntity<ApiResponse> handleSqlException(SQLException ex) {
+    int status = 500;
+    String error = "sql_exception";
+    String errorMessage = "please contact the server";
+    String errorCode = "DB_001";
+    if (ex instanceof SQLIntegrityConstraintViolationException) {
+      status = 400;
+      error = "invalid_data";
+      errorMessage = "there was a problem processing your data; please check them again";
+      errorCode = "DB_002";
+    }
+    log.warn("[SqlException] {}", ex.getMessage());
+    return ResponseEntity.status(status).body(ApiResponse.error(error, errorCode, errorMessage));
   }
 
 }

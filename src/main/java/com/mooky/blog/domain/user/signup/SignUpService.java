@@ -4,12 +4,15 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.mooky.blog.domain.user.entity.UserEntity;
 import com.mooky.blog.domain.user.entity.UserEntity.SignUpType;
 import com.mooky.blog.domain.user.repository.UserRepository;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class SignUpService {
@@ -36,7 +39,13 @@ public class SignUpService {
 
   // TODO email verification
   public void signUpBlogUser(BlogUserSignUpReq req, SignUpType signUpType) {
-    
+    UserEntity userReq = new UserEntity.Builder().agreedMarketingTerms(req.isAgreeToMarketing())
+      .email(req.getEmail())
+      .username(req.getUsername())
+      .password(req.getPassword())
+      .signupType(signUpType)
+      .build();
+    this.userRepository.save(userReq);
   }
 
 }

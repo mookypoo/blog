@@ -21,7 +21,7 @@ create or replace table mooky.user
   email         varchar(200)          not null unique comment '가입 시 이메일',
   password      varchar(200)          comment '이메일 가입 시 로그인을 위한 암호화 되어있는 비밀번호',
   status        varchar(10)           default 'ACTIVE' comment '보통(ACTIVE), 휴면(PAUSED), 탈퇴(WITHDRAWN)',
-  agreed_marketing_terms  boolean     default false,
+  agreed_marketing_terms  bool        default false,
   created_at    datetime              default current_timestamp(),
   created_by    varchar(20)           default 'SYSTEM',
   recent_login_at datetime            comment '최근 로그인 일시',
@@ -30,7 +30,12 @@ create or replace table mooky.user
 )
   comment '블로그 사용자 마스터 테이블 ';
 
-insert into mooky.user (username, sign_up_type, email, password) values ("mooky", "EMAIL", "sookim482.dev@gmail.com", "password");
+insert into mooky.user (username, sign_up_type, email, password) values ("Happy", "EMAIL", "heysookim482@gmail.com", "password");
+
+create trigger log_user_terms
+after insert on user
+for each row
+insert into user_terms (user_id, terms_version) values (NEW.user_id, (select version from terms order by terms_id desc limit 1));
 
 create or replace table mooky.terms 
 (

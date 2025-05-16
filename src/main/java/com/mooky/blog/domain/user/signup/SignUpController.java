@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mooky.blog.domain.user.constraints.groups.UserEmail;
 import com.mooky.blog.domain.user.constraints.groups.UserSignUpInfo;
 import com.mooky.blog.domain.user.constraints.groups.Username;
+import com.mooky.blog.domain.user.entity.UserEntity.SignUpType;
 import com.mooky.blog.global.ApiResponse;
 import com.mooky.blog.global.exception.ApiException.InvalidBodyException;
 
@@ -51,7 +52,8 @@ public class SignUpController {
   @PostMapping("/email")
   public ApiResponse signUpViaEmail(@Valid @RequestBody BlogUserSignUpReq req) {
     this.validation(req, UserSignUpInfo.class);
-    return ApiResponse.ok("validated");
+    this.signUpService.signUpBlogUser(req, SignUpType.EMAIL);
+    return ApiResponse.ok("회원가입 성공");
   }
 
   @PostMapping("/check/email")

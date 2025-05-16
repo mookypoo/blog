@@ -18,11 +18,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Table(name = "user")
 @Entity
 @NoArgsConstructor
 @SuppressWarnings("unused")
+@ToString
 public class UserEntity {
 
   @Id
@@ -50,11 +52,7 @@ public class UserEntity {
   @Basic(fetch = FetchType.LAZY) // large Serializable object 
   private @Getter String password;
 
-  private enum UserStatus {
-    NORMAL, PAUSED, WITHDRAWN
-  }
-
-  private UserStatus status = UserStatus.NORMAL;
+  private String status = "ACTIVE";
 
   @Column(updatable = false, insertable = false) 
   private LocalDateTime createdAt;
@@ -66,11 +64,7 @@ public class UserEntity {
 
   private String modifiedBy;
 
-  @Override
-  public String toString() {
-    return "User [id=" + id + ", signUpType=" + signUpType + ", ssoId=" + ssoId + ", email=" + email
-        + ",username=" + username + "]";
-  }
+  private boolean agreedMarketingTerms = false;
 
   public UserEntity(Builder builder) {
     this.username = builder.username;
@@ -78,6 +72,7 @@ public class UserEntity {
     this.email = builder.email;
     this.ssoId = builder.ssoId;
     this.password = builder.password;
+    this.agreedMarketingTerms = builder.agreedMarketingTerms;
   }
 
   public static class Builder {
@@ -86,6 +81,7 @@ public class UserEntity {
     private String email;
     private String ssoId;
     private String password;
+    private boolean agreedMarketingTerms;
 
     public Builder username(String username) {
       this.username = username;
@@ -109,6 +105,11 @@ public class UserEntity {
 
     public Builder password(String password) {
       this.password = password;
+      return this;
+    }
+
+    public Builder agreedMarketingTerms(boolean agree) {
+      this.agreedMarketingTerms = agree;
       return this;
     }
 
