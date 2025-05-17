@@ -10,5 +10,3 @@ spring:
     'init.mode': always
     
 
-mooky:
-  endpoint: 

@@ -2,8 +2,6 @@ package com.mooky.blog.domain.user.constraints;
 
 import java.util.regex.Pattern;
 
-import com.mooky.blog.global.exception.ApiException.InvalidBodyException;
-
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
@@ -39,8 +37,10 @@ public class PasswordValidator implements ConstraintValidator<PasswordConstraint
       errorMessage = "영문, 숫자 및 특수문자 (?, !, @, #, $, %, -, _) 중 2개 이상을 사용해야됩니다";
     }
 
-     if (!errorMessage.isEmpty()) {
-      throw new InvalidBodyException("invalid_password", errorMessage, value);
+    if (!errorMessage.isEmpty()) {
+      context.disableDefaultConstraintViolation();
+      context.buildConstraintViolationWithTemplate(errorMessage).addConstraintViolation();
+      return false;
     }
     return true;
   }

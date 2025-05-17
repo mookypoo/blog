@@ -20,7 +20,7 @@ import jakarta.validation.Validator;
 
 
 @RestController
-@RequestMapping("${mooky.endpoint}/v1/blog")
+@RequestMapping("${mooky.endpoint}/v1/blogs")
 public class BlogController {
   
   @Autowired

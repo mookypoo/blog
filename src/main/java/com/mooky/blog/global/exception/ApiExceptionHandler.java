@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,16 +34,28 @@ public class ApiExceptionHandler {
     return ResponseEntity.status(status).body(ApiResponse.error(ex));
   }
 
-  // Jakarta constraint 사용했을 시 error (annoated within class)
+  // TODO ex.getBindingResult().getFieldError() vs. ex.getFieldError()
+  /**
+   * Jakarta constraint 사용했을 시 error (annoated within class)
+   * 
+   * @param ex
+   * @return
+   */
   @SuppressWarnings("null")
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ApiResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-    
-    String message = ex.getFieldError() == null ? null : ex.getFieldError().getDefaultMessage();
-    if (message == null) {
-      message = "파라미터 " + ex.getFieldError().getField() + " 오류 : " + ex.getFieldError().getRejectedValue();
+   
+    FieldError fieldError = ex.getFieldError();
+    String fieldName = "";
+    String rejectedValue = "";
+    if (fieldError != null) {
+      fieldName = fieldError.getField();
+      rejectedValue = fieldError.getRejectedValue() != null ? fieldError.getRejectedValue().toString() : "";
     }
-    log.warn("[MethodArgumentNotValidException] {} [{}]", ex.getMessage(), this.getThrownFrom(ex.getStackTrace()));
+    String message = fieldError != null ? fieldError.getDefaultMessage() : "invalid body argument";
+    log.warn(
+        "[MethodArgumentNotValidException] {}; fieldName={}; rejectedValue={}",
+        message, fieldName, rejectedValue);
     return ResponseEntity.status(400).body(ApiResponse.error("invalid_argument", "COM_001", message));
   }
 

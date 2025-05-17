@@ -1,5 +1,6 @@
 package com.mooky.blog.domain.user.signup;
 
+import com.mooky.blog.domain.user.constraints.EmailConstraints;
 import com.mooky.blog.domain.user.constraints.PasswordConstraints;
 import com.mooky.blog.domain.user.constraints.UsernameConstraints;
 import com.mooky.blog.domain.user.constraints.groups.UserEmail;
@@ -18,8 +19,9 @@ import lombok.ToString;
 @ToString
 public class BlogUserSignUpReq {
 
-  @Email(message = "invalid email format", groups = { UserEmail.class, UserSignUpInfo.class })
-  @Size(min = 1, groups = { UserEmail.class, UserSignUpInfo.class })
+  @EmailConstraints(groups = { UserEmail.class, UserSignUpInfo.class })
+  // @Email(message = "invalid email format", groups = { UserEmail.class, UserSignUpInfo.class })
+  // @Size(min = 1, groups = { UserEmail.class, UserSignUpInfo.class })
   private final String email;
 
   @UsernameConstraints(groups = { Username.class, UserSignUpInfo.class })

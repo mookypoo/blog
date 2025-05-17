@@ -19,13 +19,11 @@ import org.testcontainers.utility.DockerImageName;
 
 import com.mooky.blog.domain.blog.BlogService;
 import com.mooky.blog.domain.blog.vo.BlogReq;
-import com.mooky.blog.domain.user.UserRepository;
 import com.mooky.blog.domain.user.entity.UserEntity;
 import com.mooky.blog.domain.user.entity.UserEntity.SignUpType;
+import com.mooky.blog.domain.user.repository.UserRepository;
 
 import io.restassured.RestAssured;
-
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BlogControllerTest {
 

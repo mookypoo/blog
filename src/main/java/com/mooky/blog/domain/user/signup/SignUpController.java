@@ -1,9 +1,6 @@
 package com.mooky.blog.domain.user.signup;
 
 import java.util.Map;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,12 +12,7 @@ import com.mooky.blog.domain.user.constraints.groups.UserSignUpInfo;
 import com.mooky.blog.domain.user.constraints.groups.Username;
 import com.mooky.blog.domain.user.entity.UserEntity.SignUpType;
 import com.mooky.blog.global.ApiResponse;
-import com.mooky.blog.global.exception.ApiException.InvalidBodyException;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Valid;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
@@ -31,42 +23,22 @@ public class SignUpController {
 
   private final SignUpService signUpService;
 
-  // TODO have as interface?
-  /**
-   * validates using Validator
-   * 
-   * @param req    (object to be validated)
-   * @param groups validation groups
-   * @see jakarta.validation.Validator.validate
-   * @throws InvalidBodyException 
-   */
-  private <T> void validation(T req, Class<?> groups) {
-    Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-    Set<ConstraintViolation<T>> vios = validator.validate(req, groups);
-    if (vios.size() != 0) {
-      ConstraintViolation<T> vio = vios.iterator().next();
-      throw new InvalidBodyException("invalid_body", vio.getMessage(), vio.getInvalidValue().toString());
-    }
-  }
-
   @PostMapping("/email")
-  public ApiResponse signUpViaEmail(@Valid @RequestBody BlogUserSignUpReq req) {
-    this.validation(req, UserSignUpInfo.class);
+  public ApiResponse signUpViaEmail(@Validated(UserSignUpInfo.class) @RequestBody BlogUserSignUpReq req) {
     this.signUpService.signUpBlogUser(req, SignUpType.EMAIL);
     return ApiResponse.ok("회원가입 성공");
   }
 
   @PostMapping("/check/email")
-  public ApiResponse checkEmail(@Valid @RequestBody BlogUserSignUpReq req) {
-    this.validation(req, UserEmail.class);
+  public ApiResponse checkEmail(@Validated(UserEmail.class) @RequestBody BlogUserSignUpReq req) {
+    //this.validation(req, UserEmail.class);
     return ApiResponse.ok(Map.of(
         "isEmailAvailable", this.signUpService.isEmailAvailable(req.getEmail()),
         "email", req.getEmail()));
   }
   
   @PostMapping("/check/username")
-  public ApiResponse checkUsername(@Valid @RequestBody BlogUserSignUpReq req) {
-    this.validation(req, Username.class);
+  public ApiResponse checkUsername(@Validated(Username.class) @RequestBody BlogUserSignUpReq req) {
     return ApiResponse.ok(Map.of(
         "isUsernameAvailable", this.signUpService.isUsernameAvailable(req.getUsername()),
         "username", req.getUsername()));

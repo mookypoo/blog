@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mooky.blog.global.ApiResponse;
 
 @RestController
-@RequestMapping("${mooky.endpoint}/v1/user")
+@RequestMapping("${mooky.endpoint}/v1/users")
 public class UserController {
 
   @Autowired

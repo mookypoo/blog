@@ -2,6 +2,8 @@ package com.mooky.blog.domain.user.signup;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mooky.blog.domain.user.entity.UserEntity;
@@ -10,14 +12,13 @@ import com.mooky.blog.domain.user.repository.UserRepository;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class SignUpService {
   
   private final UserRepository userRepository;
+  private @Value("${mooky.bCryptStrength}") int bCryptStrength;
 
   /**
    * check if email has already been used to sign up
@@ -40,12 +41,19 @@ public class SignUpService {
   // TODO email verification
   public void signUpBlogUser(BlogUserSignUpReq req, SignUpType signUpType) {
     UserEntity userReq = new UserEntity.Builder().agreedMarketingTerms(req.isAgreeToMarketing())
-      .email(req.getEmail())
-      .username(req.getUsername())
-      .password(req.getPassword())
-      .signupType(signUpType)
-      .build();
+        .email(req.getEmail())
+        .username(req.getUsername())
+        .password(this.encryptPW(req.getPassword()))
+        .signupType(signUpType)
+        .build();
     this.userRepository.save(userReq);
+  }
+  
+  private String encryptPW(String pw) {
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(this.bCryptStrength);
+    String result = encoder.encode(pw);
+    assert (encoder.matches(pw, result));
+    return result;
   }
 
 }

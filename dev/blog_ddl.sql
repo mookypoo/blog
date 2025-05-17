@@ -37,6 +37,12 @@ after insert on user
 for each row
 insert into user_terms (user_id, terms_version) values (NEW.user_id, (select version from terms order by terms_id desc limit 1));
 
+create trigger delete_user_terms
+before delete on user
+for each row
+delete from user_terms where user_id=OLD.user_id;
+
+
 create or replace table mooky.terms 
 (
   terms_id      bigint                primary key auto_increment comment 'terms id',

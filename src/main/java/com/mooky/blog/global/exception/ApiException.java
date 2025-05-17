@@ -30,16 +30,16 @@ public class ApiException extends RuntimeException {
     }
   }
 
-  public static class InvalidBodyException extends ApiException {
-    /**
-     * when body values do not meet format requirements
-     * <p> eg) invalid username format
-     * @see ApiException
-     */
-    public InvalidBodyException(String error, String errorMessage, String errorValue) {
-      super(error, errorMessage, "COM_001", errorValue, null);
-    }
-  }
+  // public static class InvalidBodyException extends ApiException {
+  //   /**
+  //    * when body values do not meet format requirements
+  //    * <p> eg) invalid username format
+  //    * @see ApiException
+  //    */
+  //   public InvalidBodyException(String error, String errorMessage, String errorValue) {
+  //     super(error, errorMessage, "COM_001", errorValue, null);
+  //   }
+  // }
 
 
   @Override

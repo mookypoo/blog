@@ -3,8 +3,6 @@ package com.mooky.blog.domain.user.constraints;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
-import com.mooky.blog.global.exception.ApiException.InvalidBodyException;
-
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
@@ -30,7 +28,9 @@ public class UsernameValidator implements ConstraintValidator<UsernameConstraint
     }
 
     if (!errorMessage.isEmpty()) {
-      throw new InvalidBodyException("invalid_username", errorMessage, value);
+      context.disableDefaultConstraintViolation();
+      context.buildConstraintViolationWithTemplate(errorMessage).addConstraintViolation();
+      return false;
     }
     return true;
   }
