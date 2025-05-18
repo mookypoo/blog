@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mooky.blog.domain.blog.constraints.SaveBlog;
-import com.mooky.blog.domain.blog.vo.BlogDetails;
-import com.mooky.blog.domain.blog.vo.BlogReq;
+import com.mooky.blog.domain.blog.dto.BlogResponse;
+import com.mooky.blog.domain.blog.dto.BlogReq;
 import com.mooky.blog.global.ApiResponse;
 
 import jakarta.validation.Valid;
@@ -28,14 +28,14 @@ public class BlogController {
   
   @GetMapping("/{blogId}")
   public ApiResponse getBlogDetails(@PathVariable("blogId") int blogId) {
-    BlogDetails blog = this.blogService.findBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId));
+    BlogResponse blog = this.blogService.findBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId));
     return ApiResponse.ok(blog);
   }
 
 
   @GetMapping("/nativeQuery/{blogId}")
   public ApiResponse getBlogDetailsWithNativeQuery(@PathVariable("blogId") int blogId) {
-    BlogDetails blog = this.blogService.findBlogUsingNativeQuery(Integer.toUnsignedLong(blogId));
+    BlogResponse blog = this.blogService.findBlogUsingNativeQuery(Integer.toUnsignedLong(blogId));
     return ApiResponse.ok(blog);
   }
 
@@ -43,7 +43,7 @@ public class BlogController {
   public ApiResponse createBlog(@Valid @RequestBody BlogReq blogReq) {
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     validator.validate(blogReq, SaveBlog.class);
-    BlogDetails blog = this.blogService.saveBlogAndReturnBlogDetails(blogReq);
+    BlogResponse blog = this.blogService.saveBlogAndReturnBlogDetails(blogReq);
     return ApiResponse.ok(blog);
   }
 
@@ -51,7 +51,7 @@ public class BlogController {
   public ApiResponse editBlog(@Valid @RequestBody BlogReq blogReq, @PathVariable("blogId") int blogId) {
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     validator.validate(blogReq, SaveBlog.class);
-    BlogDetails blog = this.blogService.editBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId), blogReq);
+    BlogResponse blog = this.blogService.editBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId), blogReq);
     return ApiResponse.ok(blog);
   }
   

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.mooky.blog.domain.user.entity.UserEntity;
-import com.mooky.blog.domain.user.entity.UserEntity.SignUpType;
-import com.mooky.blog.domain.user.repository.UserRepository;
+import com.mooky.blog.domain.user.User;
+import com.mooky.blog.domain.user.UserRepository;
+import com.mooky.blog.domain.user.User.SignUpType;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -25,22 +25,24 @@ public class SignUpService {
    * @return true if available (= not in use)
    */
   public boolean isEmailAvailable(String email) {
-    Optional<String> emailInUse = this.userRepository.unavailableEmail(email);
-    return !emailInUse.isPresent();
+    return this.userRepository.existsByEmail(email);
   }
 
   /**
    * check if username is in use
    * @return true if available (= not in use)
    */
-  public boolean isUsernameAvailable(String Username) {
-    Optional<String> UsernameInUse = this.userRepository.unavailableUsername(Username);
-    return !UsernameInUse.isPresent();
+  public boolean isUsernameAvailable(String username) {
+    // Optional<String> UsernameInUse = this.userRepository.existsByUsername(Username);
+    // return !UsernameInUse.isPresent();
+    return !this.userRepository.existsByUsername(username);
   }
 
   // TODO email verification
-  public void signUpBlogUser(BlogUserSignUpReq req, SignUpType signUpType) {
-    UserEntity userReq = new UserEntity.Builder().agreedMarketingTerms(req.isAgreeToMarketing())
+  // TODO sign up log in aspect??
+  public void signUpBlogUser(UserSignUpReq req, SignUpType signUpType) {
+    // TODO should I use Builder or constructor
+    User userReq = new User.Builder().agreedMarketingTerms(req.isAgreeToMarketing())
         .email(req.getEmail())
         .username(req.getUsername())
         .password(this.encryptPW(req.getPassword()))

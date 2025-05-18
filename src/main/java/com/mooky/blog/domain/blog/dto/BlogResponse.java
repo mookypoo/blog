@@ -1,10 +1,10 @@
-package com.mooky.blog.domain.blog.vo;
+package com.mooky.blog.domain.blog.dto;
 
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.mooky.blog.domain.blog.entity.BlogEntity;
+import com.mooky.blog.domain.blog.entity.Blog;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @JsonInclude(Include.NON_NULL)
-public class BlogDetails {
+public class BlogResponse {
   private final long blogId;
   private final String title;
   private final String content;
@@ -21,7 +21,7 @@ public class BlogDetails {
   private final LocalDateTime createdAt;
   private final LocalDateTime modifiedAt;
 
-  public BlogDetails(BlogEntity blogEntity) {
+  public BlogResponse(Blog blogEntity) {
     this.blogId = blogEntity.getId();
     this.title = blogEntity.getTitle();
     this.content = blogEntity.getContent();

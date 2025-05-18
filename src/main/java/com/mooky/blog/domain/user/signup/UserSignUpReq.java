@@ -8,8 +8,6 @@ import com.mooky.blog.domain.user.constraints.groups.UserSignUpInfo;
 import com.mooky.blog.domain.user.constraints.groups.Username;
 
 import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -17,11 +15,9 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor(force = true)
 @ToString
-public class BlogUserSignUpReq {
+public class UserSignUpReq {
 
   @EmailConstraints(groups = { UserEmail.class, UserSignUpInfo.class })
-  // @Email(message = "invalid email format", groups = { UserEmail.class, UserSignUpInfo.class })
-  // @Size(min = 1, groups = { UserEmail.class, UserSignUpInfo.class })
   private final String email;
 
   @UsernameConstraints(groups = { Username.class, UserSignUpInfo.class })
@@ -34,4 +30,6 @@ public class BlogUserSignUpReq {
   private final boolean agreeToTerms;
   
   private final boolean agreeToMarketing;
+
+  // Assert.isTrue()
 }

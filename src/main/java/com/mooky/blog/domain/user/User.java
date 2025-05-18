@@ -1,4 +1,4 @@
-package com.mooky.blog.domain.user.entity;
+package com.mooky.blog.domain.user;
 
 import java.time.LocalDateTime;
 
@@ -20,12 +20,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * implemented custom Builder class as an example
+ */
 @Table(name = "user")
 @Entity
 @NoArgsConstructor
 @SuppressWarnings("unused")
 @ToString
-public class UserEntity {
+public class User {
 
   @Id
   @Column(name = "user_id")
@@ -60,13 +63,13 @@ public class UserEntity {
   @Column(length = 20)
   private String createdBy = "SYSTEM";
 
-  private LocalDateTime modifiedAt;
+  private LocalDateTime modifiedAt; 
 
   private String modifiedBy;
 
   private boolean agreedMarketingTerms = false;
 
-  public UserEntity(Builder builder) {
+  public User(Builder builder) {
     this.username = builder.username;
     this.signUpType = builder.signUpType;
     this.email = builder.email;
@@ -113,8 +116,8 @@ public class UserEntity {
       return this;
     }
 
-    public UserEntity build() {
-      return new UserEntity(this);
+    public User build() {
+      return new User(this);
     }
   }
 

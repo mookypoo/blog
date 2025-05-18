@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.mooky.blog.domain.blog.entity.BlogEntity;
+import com.mooky.blog.domain.blog.dto.BlogResponse;
+import com.mooky.blog.domain.blog.dto.BlogReq;
+import com.mooky.blog.domain.blog.entity.Blog;
 import com.mooky.blog.domain.blog.repository.BlogRepository;
-import com.mooky.blog.domain.blog.vo.BlogDetails;
-import com.mooky.blog.domain.blog.vo.BlogReq;
 import com.mooky.blog.global.exception.ApiException.NotFoundException;
 
 import jakarta.persistence.EntityManager;
@@ -85,33 +85,33 @@ public class BlogService {
    */ 
 
    
-  public BlogDetails findBlogUsingNativeQuery(Long blogId) {
-    BlogDetails blogDetails = this.blogRepository.findBlogDetailsWithNativeQuery(blogId).orElseThrow(
+  public BlogResponse findBlogUsingNativeQuery(Long blogId) {
+    BlogResponse blogDetails = this.blogRepository.findBlogDetailsWithNativeQuery(blogId).orElseThrow(
       () -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId))
     );
     return blogDetails;
   }
 
-  public BlogDetails findBlogAndReturnBlogDetails(Long blogId) {
-    BlogEntity blogEntity = this.blogRepository.findById(blogId)
+  public BlogResponse findBlogAndReturnBlogDetails(Long blogId) {
+    Blog blogEntity = this.blogRepository.findById(blogId)
         .orElseThrow(() -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId)));
-    return new BlogDetails(blogEntity);
+    return new BlogResponse(blogEntity);
   }
 
   @Transactional
-  public BlogDetails saveBlogAndReturnBlogDetails(BlogReq blogReq) {
-    BlogEntity savedBlog = this.blogRepository.save(new BlogEntity(blogReq));
+  public BlogResponse saveBlogAndReturnBlogDetails(BlogReq blogReq) {
+    Blog savedBlog = this.blogRepository.save(new Blog(blogReq));
     this.entityManager.refresh(savedBlog);
-    return new BlogDetails(savedBlog);
+    return new BlogResponse(savedBlog);
   }
   
-  public BlogDetails editBlogAndReturnBlogDetails(Long blogId, BlogReq blogReq) {
+  public BlogResponse editBlogAndReturnBlogDetails(Long blogId, BlogReq blogReq) {
     int numOfEditedRows = this.blogRepository.editBlog(blogId, blogReq.getTitle(), blogReq.getContent());
     if (numOfEditedRows == 0) {
       throw new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId));
     }
-    Optional<BlogEntity> blogEntity = this.blogRepository.findById(blogId);
-    return new BlogDetails(blogEntity.get());
+    Optional<Blog> blogEntity = this.blogRepository.findById(blogId);
+    return new BlogResponse(blogEntity.get());
   }
 
 }

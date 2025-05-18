@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.mooky.blog.domain.blog.vo.BlogDetails;
+import com.mooky.blog.domain.blog.dto.BlogResponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @SqlResultSetMapping(name = "BlogDetailMapping",
     classes = @ConstructorResult(
-      targetClass = BlogDetails.class,
+      targetClass = BlogResponse.class,
       columns = {
             @ColumnResult(name = "blogId"),
             @ColumnResult(name = "title"),
@@ -49,7 +49,7 @@ import lombok.NoArgsConstructor;
             LEFT JOIN User u ON b.author_id=u.user_id
             WHERE b.blog_id=:blogId
     """, resultSetMapping = "BlogDetailMapping")
-public class BlogEntityWithNativeQuery {
+public class BlogWithNativeQuery {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

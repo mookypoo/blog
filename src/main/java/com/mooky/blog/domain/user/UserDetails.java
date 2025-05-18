@@ -1,11 +1,10 @@
 package com.mooky.blog.domain.user;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 public class UserDetails {
 
   private final Long userId;

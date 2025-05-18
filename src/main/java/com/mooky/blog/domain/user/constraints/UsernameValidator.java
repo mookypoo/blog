@@ -3,14 +3,21 @@ package com.mooky.blog.domain.user.constraints;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
+import com.mooky.blog.domain.user.UserRepository;
+
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 
 /**
  * 2자 ~ 15자 사이
  * <p>한글, 영어, 숫자 가능 
  */
+@RequiredArgsConstructor
 public class UsernameValidator implements ConstraintValidator<UsernameConstraints, String>{
+
+  private final UserRepository userRepository;
 
   @Override
   public boolean isValid(String value, ConstraintValidatorContext context) {
@@ -27,11 +34,19 @@ public class UsernameValidator implements ConstraintValidator<UsernameConstraint
       }
     }
 
+    if (userRepository.existsByUsername(value)) {
+      errorMessage = "이미 사용중인 이름입니다";
+    }
+
     if (!errorMessage.isEmpty()) {
-      context.disableDefaultConstraintViolation();
-      context.buildConstraintViolationWithTemplate(errorMessage).addConstraintViolation();
+      // context is null when unit testing
+      if (context != null) {
+        context.disableDefaultConstraintViolation();
+        context.buildConstraintViolationWithTemplate(errorMessage).addConstraintViolation();
+      }
       return false;
     }
+
     return true;
   }
 

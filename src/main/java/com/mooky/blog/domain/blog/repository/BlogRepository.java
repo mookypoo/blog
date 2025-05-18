@@ -7,12 +7,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.mooky.blog.domain.blog.entity.BlogEntity;
-import com.mooky.blog.domain.blog.vo.BlogDetails;
+import com.mooky.blog.domain.blog.dto.BlogResponse;
+import com.mooky.blog.domain.blog.entity.Blog;
 
 import jakarta.transaction.Transactional;
 
-public interface BlogRepository extends JpaRepository<BlogEntity, Long> {
+public interface BlogRepository extends JpaRepository<Blog, Long> {
   /**
    * uses native query (blog/entity/BlogEntityWithNativeQuery) to join Blog & User
    * and return a DTO right away
@@ -21,7 +21,7 @@ public interface BlogRepository extends JpaRepository<BlogEntity, Long> {
    * @return BlogDetails (instead of Optional BlogEntity)
    */
   @Query(nativeQuery = true, name = "BlogEntityWithNativeQuery.findBlogDetails")
-  Optional<BlogDetails> findBlogDetailsWithNativeQuery(@Param("blogId") Long blogId);
+  Optional<BlogResponse> findBlogDetailsWithNativeQuery(@Param("blogId") Long blogId);
 
   // TODO check if requesting user is same as author 
   @Modifying

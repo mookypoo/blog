@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.mooky.blog.domain.blog.vo.BlogReq;
+import com.mooky.blog.domain.blog.dto.BlogReq;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "Blog")
 @Getter
 @NoArgsConstructor
-public class BlogEntity {
+public class Blog {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +42,7 @@ public class BlogEntity {
 
   @OneToOne
   @JoinColumn(name = "authorId", referencedColumnName = "user_id", insertable = false, updatable = false)
-  private BlogCreaterEntity author;
+  private BlogCreater author;
 
   @Column(insertable = false, updatable = false)
   @CreationTimestamp // need this in order to retrieve current_timestamp()
@@ -53,7 +53,7 @@ public class BlogEntity {
   private LocalDateTime modifiedAt;
 
   // TODO don't need if i dont use jpa repository save 
-  public BlogEntity(BlogReq req) {
+  public Blog(BlogReq req) {
     this.title = req.getTitle();
     this.content = req.getContent();
     this.authorId = req.getUserId();

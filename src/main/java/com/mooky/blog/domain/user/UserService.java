@@ -1,16 +1,16 @@
 package com.mooky.blog.domain.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mooky.blog.domain.user.repository.UserRepository;
 import com.mooky.blog.global.exception.ApiException.NotFoundException;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-  @Autowired
-  private UserRepository userRepository;
+  private final UserRepository userRepository;
 
   public UserDetails getUserDetails(Long userId) {
     UserDetails user = this.userRepository.getUserDetails(userId).orElseThrow(

@@ -1,6 +1,6 @@
 package com.mooky.blog.domain.blog.entity;
 
-import com.mooky.blog.domain.user.entity.UserEntity;
+import com.mooky.blog.domain.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "user")
 @Getter
 @NoArgsConstructor
-public class BlogCreaterEntity {
+public class BlogCreater {
  
   @Id
   @Column(name = "user_id")
@@ -24,7 +24,7 @@ public class BlogCreaterEntity {
   // TODO profile image
 
   // for testing
-  public BlogCreaterEntity(UserEntity user) {
+  public BlogCreater(User user) {
     this.id = user.getId();
     this.username = user.getUsername();
   }

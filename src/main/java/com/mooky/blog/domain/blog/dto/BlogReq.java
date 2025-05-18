@@ -1,4 +1,4 @@
-package com.mooky.blog.domain.blog.vo;
+package com.mooky.blog.domain.blog.dto;
 
 import com.mooky.blog.domain.blog.constraints.SaveBlog;
 
