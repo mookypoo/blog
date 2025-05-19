@@ -19,9 +19,9 @@ import jakarta.validation.Payload;
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME) 
 public @interface UsernameConstraints {
-  String message() default "Invalid username format";
+    String message() default "Invalid username format";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

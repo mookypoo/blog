@@ -12,4 +12,5 @@ public class BlogApplication {
 	}
 
 }
-// Done: UserServiceTest, UserConstraintsTest, using constructor dependency injection for most, rename classes
+// Done: combine auth with signup; authServiceTest; securityConfig added
+// To do: blog service test & integration test (when should I do integration tests)

@@ -12,12 +12,12 @@ import com.mooky.blog.global.ApiResponse;
 @RequestMapping("${mooky.endpoint}/v1/users")
 public class UserController {
 
-  @Autowired
-  private UserService userService;
-  
-  @GetMapping("/{userId}")
-  public ApiResponse getUserDetails(@PathVariable("userId") int userId) {
-    UserDetails user = this.userService.getUserDetails(Integer.toUnsignedLong(userId));
-    return ApiResponse.ok(user);
-  }
+    @Autowired
+    private UserService userService;
+    
+    @GetMapping("/{userId}")
+    public ApiResponse getUserDetails(@PathVariable("userId") int userId) {
+        UserDetails user = this.userService.getUserDetails(Integer.toUnsignedLong(userId));
+        return ApiResponse.ok(user);
+    }
 }

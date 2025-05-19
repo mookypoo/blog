@@ -18,81 +18,81 @@ public class UserConstraintsTest {
    * <p>
    * 한글, 영어, 숫자 가능
    */
-  @Test
-  public void usernameValidatorTest() {
-    UserRepository userRepository = Mockito.mock(UserRepository.class);
-    UsernameValidator validator = new UsernameValidator(userRepository);
+    @Test
+    public void usernameValidatorTest() {
+        UserRepository userRepository = Mockito.mock(UserRepository.class);
+        UsernameValidator validator = new UsernameValidator(userRepository);
 
-    boolean isValidUsername = validator.isValid("!", null);
-    assertFalse(isValidUsername);
+        boolean isValidUsername = validator.isValid("!", null);
+        assertFalse(isValidUsername);
 
-    isValidUsername = validator.isValid("thisusernameismorethan15", null);
-    assertFalse(isValidUsername);
+        isValidUsername = validator.isValid("thisusernameismorethan15", null);
+        assertFalse(isValidUsername);
 
-    isValidUsername = validator.isValid("cannotUse!!", null);
-    assertFalse(isValidUsername);
+        isValidUsername = validator.isValid("cannotUse!!", null);
+        assertFalse(isValidUsername);
 
-    isValidUsername = validator.isValid("한국어되요", null);
-    assertTrue(isValidUsername);
+        isValidUsername = validator.isValid("한국어되요", null);
+        assertTrue(isValidUsername);
 
-    isValidUsername = validator.isValid("combination123", null);
-    assertTrue(isValidUsername);
+        isValidUsername = validator.isValid("combination123", null);
+        assertTrue(isValidUsername);
 
-    Mockito.when(userRepository.existsByUsername("mooky")).thenReturn(true);
-    isValidUsername = validator.isValid("mooky", null);
-    assertFalse(isValidUsername);
-  }
-  
-  /**
-   * 8 ~ 20자
-   * <p>영문, 숫자 및 특수문자 (?, !,@, #, $, %, -, _) 만 가능
-   * <p>영문, 숫자 및 특수문자 (?, !,@, #, $, %, -, _) 중 2개 이상
-   */
-  @Test
-  public void passwordValidatorTest() {
-    PasswordValidator validator = new PasswordValidator();
+        Mockito.when(userRepository.existsByUsername("mooky")).thenReturn(true);
+        isValidUsername = validator.isValid("mooky", null);
+        assertFalse(isValidUsername);
+    }
+    
+    /**
+     * 8 ~ 20자
+     * <p>영문, 숫자 및 특수문자 (?, !,@, #, $, %, -, _) 만 가능
+     * <p>영문, 숫자 및 특수문자 (?, !,@, #, $, %, -, _) 중 2개 이상
+     */
+    @Test
+    public void passwordValidatorTest() {
+        PasswordValidator validator = new PasswordValidator();
 
-    boolean isValidPassword = validator.isValid("!", null);
-    assertFalse(isValidPassword);
+        boolean isValidPassword = validator.isValid("!", null);
+        assertFalse(isValidPassword);
 
-    isValidPassword = validator.isValid("this!!!isaverylongpassword!!!!!", null);
-    assertFalse(isValidPassword);
+        isValidPassword = validator.isValid("this!!!isaverylongpassword!!!!!", null);
+        assertFalse(isValidPassword);
 
-    isValidPassword = validator.isValid("onlyEnglish", null);
-    assertFalse(isValidPassword);
+        isValidPassword = validator.isValid("onlyEnglish", null);
+        assertFalse(isValidPassword);
 
-    isValidPassword = validator.isValid("한국어는안되", null);
-    assertFalse(isValidPassword);
+        isValidPassword = validator.isValid("한국어는안되", null);
+        assertFalse(isValidPassword);
 
-    isValidPassword = validator.isValid("1234567890", null);
-    assertFalse(isValidPassword);
+        isValidPassword = validator.isValid("1234567890", null);
+        assertFalse(isValidPassword);
 
-    isValidPassword = validator.isValid("good!combination", null);
-    assertTrue(isValidPassword);
-  }
+        isValidPassword = validator.isValid("good!combination", null);
+        assertTrue(isValidPassword);
+    }
 
-  @Test
-  public void emailValidatorTest() {
-    UserRepository userRepository = Mockito.mock(UserRepository.class);
-    EmailValidator emailValidator = new EmailValidator(userRepository);
+    @Test
+    public void emailValidatorTest() {
+        UserRepository userRepository = Mockito.mock(UserRepository.class);
+        EmailValidator emailValidator = new EmailValidator(userRepository);
 
-    boolean isValidEmail = emailValidator.isValid("sookim", null);
-    assertFalse(isValidEmail);
+        boolean isValidEmail = emailValidator.isValid("sookim", null);
+        assertFalse(isValidEmail);
 
-    isValidEmail = emailValidator.isValid("sookim@", null);
-    assertFalse(isValidEmail);
+        isValidEmail = emailValidator.isValid("sookim@", null);
+        assertFalse(isValidEmail);
 
-    isValidEmail = emailValidator.isValid("sookim@g", null);
-    assertFalse(isValidEmail);
+        isValidEmail = emailValidator.isValid("sookim@g", null);
+        assertFalse(isValidEmail);
 
-    isValidEmail = emailValidator.isValid("sookim@gmail.c", null);
-    assertFalse(isValidEmail);
+        isValidEmail = emailValidator.isValid("sookim@gmail.c", null);
+        assertFalse(isValidEmail);
 
-    isValidEmail = emailValidator.isValid("sookim482.dev@gmail.com", null);
-    assertTrue(isValidEmail);
+        isValidEmail = emailValidator.isValid("sookim482.dev@gmail.com", null);
+        assertTrue(isValidEmail);
 
-    Mockito.when(userRepository.existsByEmail("sookim482.dev@gmail.com")).thenReturn(false);
-    isValidEmail = emailValidator.isValid("sookim482.dev@gmail.com", null);
-    assertTrue(isValidEmail);
-  }
+        Mockito.when(userRepository.existsByEmail("sookim482.dev@gmail.com")).thenReturn(false);
+        isValidEmail = emailValidator.isValid("sookim482.dev@gmail.com", null);
+        assertTrue(isValidEmail);
+    }
 }

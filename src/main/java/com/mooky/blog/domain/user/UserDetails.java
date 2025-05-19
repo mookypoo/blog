@@ -7,12 +7,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserDetails {
 
-  private final Long userId;
+    private final Long userId;
 
-  private final String username;
+    private final String username;
 
-  private final String email;
+    private final String email;
 
-  //private String profileImage;
+    //private String profileImage;
 
 }

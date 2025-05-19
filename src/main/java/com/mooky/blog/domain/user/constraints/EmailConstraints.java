@@ -9,9 +9,9 @@ import jakarta.validation.Payload;
 @Constraint(validatedBy = EmailValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface EmailConstraints {
-  String message() default "wrong email format";
+    String message() default "wrong email format";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

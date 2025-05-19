@@ -18,10 +18,10 @@ import org.testcontainers.containers.MariaDBContainer;
 import org.testcontainers.utility.DockerImageName;
 
 import com.mooky.blog.domain.blog.BlogService;
-import com.mooky.blog.domain.blog.vo.BlogReq;
-import com.mooky.blog.domain.user.entity.UserEntity;
-import com.mooky.blog.domain.user.entity.UserEntity.SignUpType;
-import com.mooky.blog.domain.user.repository.UserRepository;
+import com.mooky.blog.domain.blog.dto.BlogReq;
+import com.mooky.blog.domain.user.User;
+import com.mooky.blog.domain.user.UserRepository;
+import com.mooky.blog.domain.user.User.SignUpType;
 
 import io.restassured.RestAssured;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -66,14 +66,14 @@ public class BlogControllerTest {
   @Test
   public void returnBlogDetails() {
     //save user 
-    UserEntity user = new UserEntity.Builder()
+    User user = new User.Builder()
         .username("mooky")
         .email("sookim482.dev@gmail.com")
         .signupType(SignUpType.EMAIL)
         .password("password")
         .build();
 
-    UserEntity savedUser = this.userRepository.save(user);
+    User savedUser = this.userRepository.save(user);
     assertThat(savedUser.getId()).isGreaterThan(0);
 
     // save blog
@@ -102,14 +102,14 @@ public class BlogControllerTest {
   @Test
   public void saveBlogAndReturnBlogId() {
     // save user
-    UserEntity user = new UserEntity.Builder()
+    User user = new User.Builder()
         .username("mooky")
         .email("sookim482.dev@gmail.com")
         .signupType(SignUpType.EMAIL)
         .password("password")
         .build();
 
-    UserEntity savedUser = this.userRepository.save(user);
+    User savedUser = this.userRepository.save(user);
     assertThat(savedUser.getId()).isGreaterThan(0);
     
     Map<String, Object> reqBody = Map.of("title", "how to use spring boot", "content", """

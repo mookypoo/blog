@@ -8,12 +8,12 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-  @Query("SELECT CASE WHEN EXISTS (SELECT 1 FROM UserEntity u where u.email=:email) THEN true ELSE false END")
-  boolean existsByEmail(@Param("email") String email);
+    @Query("SELECT CASE WHEN EXISTS (SELECT 1 FROM User u where u.email=:email) THEN true ELSE false END")
+    boolean existsByEmail(@Param("email") String email);
 
-  @Query("SELECT CASE WHEN EXISTS (SELECT 1 FROM UserEntity u WHERE u.username = :username) THEN true ELSE false END")
-  boolean existsByUsername(@Param("username") String username);
+    @Query("SELECT CASE WHEN EXISTS (SELECT 1 FROM User u WHERE u.username = :username) THEN true ELSE false END")
+    boolean existsByUsername(@Param("username") String username);
 
-  @Query("SELECT new com.mooky.blog.domain.user.UserDetails(u.id, u.username, u.email) FROM UserEntity u WHERE u.id=:userId")
-  Optional<UserDetails> getUserDetails(@Param("userId") Long userId);
+    @Query("SELECT new com.mooky.blog.domain.user.UserDetails(u.id, u.username, u.email) FROM User u WHERE u.id=:userId")
+    Optional<UserDetails> getUserDetails(@Param("userId") Long userId);
 }

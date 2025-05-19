@@ -11,18 +11,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EmailValidator implements ConstraintValidator<EmailConstraints, String>{
 
-  private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-  @Override
-  public boolean isValid(String value, ConstraintValidatorContext context) {
-    Pattern regex = Pattern.compile("\\w+@\\w+\\.\\w{2,}");
-    boolean isValid = regex.matcher(value).find();
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        Pattern regex = Pattern.compile("\\w+@\\w+\\.\\w{2,}");
+        boolean isValid = regex.matcher(value).find();
 
-    if (isValid) {
-      isValid = !this.userRepository.existsByEmail(value);
+        if (isValid) {
+            isValid = !this.userRepository.existsByEmail(value);
+            if (context != null) { // context is null when testing
+                context.disableDefaultConstraintViolation();
+                context.buildConstraintViolationWithTemplate("이미 가입한 이메일입니다").addConstraintViolation();
+            }
+        }
+
+        return isValid;
     }
-
-    return isValid;
-  }
   
 }
