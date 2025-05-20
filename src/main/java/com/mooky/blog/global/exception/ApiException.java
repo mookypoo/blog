@@ -23,6 +23,17 @@ public class ApiException extends RuntimeException {
         this.errorValue = errorValue;
     }
 
+    public static class InUseException extends ApiException {
+        /**
+         * when a requested email or username, that has passed validation, is already in use
+         * follows: error - [resource_type]_in_use, errorMessage - 이미 사용중인 [resource_type]입니다
+         * @see ApiException
+         */
+        public InUseException(String error, String errorMessage, String errorValue) {
+            super(error, errorMessage, "COM_001", errorValue);
+        }
+    }
+
     public static class NotFoundException extends ApiException {
         /**
          * when a requested resource is not found; 
@@ -32,7 +43,7 @@ public class ApiException extends RuntimeException {
          */
         public NotFoundException(String error, String errorMessage, String errorValue) {
             super(error, errorMessage, "COM_004", errorValue);
-        }   
+        }
     }
 
     @Override

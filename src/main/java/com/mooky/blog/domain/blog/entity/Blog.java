@@ -57,7 +57,6 @@ public class Blog {
 
     private LocalDateTime modifiedAt;
 
-    // TODO don't need if i dont use jpa repository save 
     public Blog(BlogWriteDto req) {
         this.title = req.getTitle();
         this.content = req.getContent();

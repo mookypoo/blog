@@ -59,8 +59,8 @@ public class BlogServiceIntegrationTest {
         assertThat(blogResponse).isNotNull();
         assertThat(blogResponse.getTitle()).isEqualTo("test title");
         assertThat(blogResponse.getContent()).isEqualTo("test content");
-        assertThat(blogResponse.getAuthorId()).isEqualTo(this.savedUser.getId());
-        assertThat(blogResponse.getAuthorUsername()).isEqualTo("test user");
+        assertThat(blogResponse.getAuthor().getAuthorId()).isEqualTo(this.savedUser.getId());
+        assertThat(blogResponse.getAuthor().getUsername()).isEqualTo("test user");
     }
     
     @Test
@@ -93,8 +93,8 @@ public class BlogServiceIntegrationTest {
         assertThat(blogResponse).isNotNull();
         assertThat(blogResponse.getTitle()).isEqualTo("test title");
         assertThat(blogResponse.getContent()).isEqualTo("test content");
-        assertThat(blogResponse.getAuthorId()).isEqualTo(this.savedUser.getId());
-        assertThat(blogResponse.getAuthorUsername()).isEqualTo("test user");
+        assertThat(blogResponse.getAuthor().getAuthorId()).isEqualTo(this.savedUser.getId());
+        assertThat(blogResponse.getAuthor().getUsername()).isEqualTo("test user");
     }
     
     // TODO edit blog 

@@ -8,16 +8,16 @@ import com.mooky.blog.domain.blog.entity.Blog;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
 @Getter
 @JsonInclude(Include.NON_NULL)
 public class BlogDetailsDto {
-    private final long blogId;
+    private final Long blogId;
     private final String title;
     private final String content;
-    private final String authorUsername;
-    private final Long authorId;
+    private final Author author;
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
@@ -25,9 +25,15 @@ public class BlogDetailsDto {
         this.blogId = blogEntity.getId();
         this.title = blogEntity.getTitle();
         this.content = blogEntity.getContent();
-        this.authorUsername = blogEntity.getAuthor().getUsername();
-        this.authorId = blogEntity.getAuthor().getId();
+        this.author = new Author(blogEntity.getAuthor().getId(), blogEntity.getAuthor().getUsername());
         this.createdAt = blogEntity.getCreatedAt();
         this.modifiedAt = blogEntity.getModifiedAt();
+    }
+
+    @RequiredArgsConstructor
+    @Getter
+    public class Author {
+        private final Long authorId;
+        private final String username;
     }
 }

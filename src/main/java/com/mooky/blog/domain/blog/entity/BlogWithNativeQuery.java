@@ -20,8 +20,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-// TODO test it out again
 /**
+ * update: can't use now that BlogDetailDto has Author class
  * uses native query instead of hibernate @JoinColumn to get author info from user table  
  * tried it because hibernate selects all columns from the User table 
  * but only need "username" field (for now)

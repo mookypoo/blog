@@ -7,6 +7,7 @@ import com.mooky.blog.domain.user.User;
 import com.mooky.blog.domain.user.UserRepository;
 import com.mooky.blog.domain.user.User.SignUpType;
 import com.mooky.blog.global.config.SecurityConfig;
+import com.mooky.blog.global.exception.ApiException.InUseException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,7 +37,15 @@ public class AuthService {
     // TODO email verification
     // TODO sign up log in aspect??
     public User signUpBlogUser(UserSignUpReq req, SignUpType signUpType) {
-        // TODO should I use Builder or constructor
+        
+        if (this.userRepository.existsByEmail(req.getEmail())) {
+            throw new InUseException("email_in_use", "이미 사용중인 이메일입니다", req.getEmail());
+        }
+
+        if (this.userRepository.existsByUsername(req.getUsername())) {
+            throw new InUseException("username_in_use", "이미 사용중인 이름입니다", req.getUsername());
+        }
+
         User userReq = new User.Builder().agreedMarketingTerms(req.isAgreeToMarketing())
             .email(req.getEmail())
             .username(req.getUsername())

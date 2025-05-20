@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import com.mooky.blog.domain.user.constraints.EmailValidator;
 import com.mooky.blog.domain.user.constraints.PasswordValidator;
@@ -20,8 +19,7 @@ public class UserConstraintsTest {
    */
     @Test
     public void usernameValidatorTest() {
-        UserRepository userRepository = Mockito.mock(UserRepository.class);
-        UsernameValidator validator = new UsernameValidator(userRepository);
+        UsernameValidator validator = new UsernameValidator();
 
         boolean isValidUsername = validator.isValid("!", null);
         assertFalse(isValidUsername);
@@ -37,10 +35,6 @@ public class UserConstraintsTest {
 
         isValidUsername = validator.isValid("combination123", null);
         assertTrue(isValidUsername);
-
-        Mockito.when(userRepository.existsByUsername("mooky")).thenReturn(true);
-        isValidUsername = validator.isValid("mooky", null);
-        assertFalse(isValidUsername);
     }
     
     /**
@@ -73,8 +67,7 @@ public class UserConstraintsTest {
 
     @Test
     public void emailValidatorTest() {
-        UserRepository userRepository = Mockito.mock(UserRepository.class);
-        EmailValidator emailValidator = new EmailValidator(userRepository);
+        EmailValidator emailValidator = new EmailValidator();
 
         boolean isValidEmail = emailValidator.isValid("sookim", null);
         assertFalse(isValidEmail);
@@ -88,10 +81,6 @@ public class UserConstraintsTest {
         isValidEmail = emailValidator.isValid("sookim@gmail.c", null);
         assertFalse(isValidEmail);
 
-        isValidEmail = emailValidator.isValid("sookim482.dev@gmail.com", null);
-        assertTrue(isValidEmail);
-
-        Mockito.when(userRepository.existsByEmail("sookim482.dev@gmail.com")).thenReturn(false);
         isValidEmail = emailValidator.isValid("sookim482.dev@gmail.com", null);
         assertTrue(isValidEmail);
     }
