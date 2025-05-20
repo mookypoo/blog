@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mooky.blog.domain.blog.constraints.SaveBlog;
-import com.mooky.blog.domain.blog.dto.BlogResponse;
-import com.mooky.blog.domain.blog.dto.BlogReq;
+import com.mooky.blog.domain.blog.dto.BlogDetailsDto;
+import com.mooky.blog.domain.blog.dto.BlogWriteDto;
 import com.mooky.blog.global.ApiResponse;
 
 import jakarta.validation.Valid;
@@ -28,30 +28,30 @@ public class BlogController {
   
   @GetMapping("/{blogId}")
   public ApiResponse getBlogDetails(@PathVariable("blogId") int blogId) {
-    BlogResponse blog = this.blogService.findBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId));
+    BlogDetailsDto blog = this.blogService.findBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId));
     return ApiResponse.ok(blog);
   }
 
 
   @GetMapping("/nativeQuery/{blogId}")
   public ApiResponse getBlogDetailsWithNativeQuery(@PathVariable("blogId") int blogId) {
-    BlogResponse blog = this.blogService.findBlogUsingNativeQuery(Integer.toUnsignedLong(blogId));
+    BlogDetailsDto blog = this.blogService.findBlogUsingNativeQuery(Integer.toUnsignedLong(blogId));
     return ApiResponse.ok(blog);
   }
 
   @PostMapping
-  public ApiResponse createBlog(@Valid @RequestBody BlogReq blogReq) {
+  public ApiResponse createBlog(@Valid @RequestBody BlogWriteDto blogReq) {
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     validator.validate(blogReq, SaveBlog.class);
-    BlogResponse blog = this.blogService.saveBlogAndReturnBlogDetails(blogReq);
+    BlogDetailsDto blog = this.blogService.saveBlogAndReturnBlogDetails(blogReq);
     return ApiResponse.ok(blog);
   }
 
   @PatchMapping("/{blogId}")
-  public ApiResponse editBlog(@Valid @RequestBody BlogReq blogReq, @PathVariable("blogId") int blogId) {
+  public ApiResponse editBlog(@Valid @RequestBody BlogWriteDto blogReq, @PathVariable("blogId") int blogId) {
     Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
     validator.validate(blogReq, SaveBlog.class);
-    BlogResponse blog = this.blogService.editBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId), blogReq);
+    BlogDetailsDto blog = this.blogService.editBlogAndReturnBlogDetails(Integer.toUnsignedLong(blogId), blogReq);
     return ApiResponse.ok(blog);
   }
   

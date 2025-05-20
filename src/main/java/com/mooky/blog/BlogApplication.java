@@ -12,5 +12,9 @@ public class BlogApplication {
 	}
 
 }
-// Done: combine auth with signup; authServiceTest; securityConfig added
-// To do: blog service test & integration test (when should I do integration tests)
+// Done: BlogServiceIntegrationTest; Refactor Blog
+// To do: use mapstruct library
+// - move user validation to service layer?
+// - refactor BlogController validation 
+// - Jpa projection (Blog)
+// - blog service test & integration test (when should I do integration tests)

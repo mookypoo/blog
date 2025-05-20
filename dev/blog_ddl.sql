@@ -42,6 +42,11 @@ before delete on user
 for each row
 delete from user_terms where user_id=OLD.user_id;
 
+create trigger delete_user_blog
+before delete on user
+for each row
+delete from blog where author_id=OLD.user_id;
+
 
 create or replace table mooky.terms 
 (

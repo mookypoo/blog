@@ -21,7 +21,7 @@ public class ApiExceptionHandler {
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<ApiResponse> handleApiException(ApiException ex) {
         int status = 400;
-        log.warn("[{}] {} [{}]", ex.getClass().getSimpleName(), ex.toString(), ex.getStackTrace()[0].toString());
+        log.warn("{} [{}]", ex.toString(), ex.getStackTrace()[0].toString());
 
         if (ex instanceof NotFoundException) {
             status = 404;

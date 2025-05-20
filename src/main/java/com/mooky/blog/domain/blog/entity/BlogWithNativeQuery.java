@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.mooky.blog.domain.blog.dto.BlogResponse;
+import com.mooky.blog.domain.blog.dto.BlogDetailsDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
@@ -20,13 +20,20 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+// TODO test it out again
+/**
+ * uses native query instead of hibernate @JoinColumn to get author info from user table  
+ * tried it because hibernate selects all columns from the User table 
+ * but only need "username" field (for now)
+ * would be useful for more complex queries but a lot of boilerplate code...
+ */
 @Entity
 @Table(name = "Blog")
 @Getter
 @NoArgsConstructor
 @SqlResultSetMapping(name = "BlogDetailMapping",
     classes = @ConstructorResult(
-      targetClass = BlogResponse.class,
+      targetClass = BlogDetailsDto.class,
       columns = {
             @ColumnResult(name = "blogId"),
             @ColumnResult(name = "title"),
@@ -51,26 +58,26 @@ import lombok.NoArgsConstructor;
     """, resultSetMapping = "BlogDetailMapping")
 public class BlogWithNativeQuery {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "blog_id")
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "blog_id")
+    private Long id;
 
-  @Size(min = 1, max = 50)
-  private String title;
+    @Size(min = 1, max = 50)
+    private String title;
 
-  @Size(min = 1)
-  private String content;
+    @Size(min = 1)
+    private String content;
 
-  @Column(nullable = false, updatable = false)
-  private long authorId;
+    @Column(nullable = false, updatable = false)
+    private long authorId;
 
-  @Column(insertable = false, updatable = false)
-  @CreationTimestamp // need this in order to retrieve current_timestamp()
-  private LocalDateTime createdAt;
+    @Column(insertable = false, updatable = false)
+    @CreationTimestamp // need this in order to retrieve current_timestamp()
+    private LocalDateTime createdAt;
 
-  private String createdBy = "SYSTEM";
+    private String createdBy = "SYSTEM";
 
-  private LocalDateTime modifiedAt;
+    private LocalDateTime modifiedAt;
 
 }
