@@ -67,6 +67,8 @@ public class User {
 
     private String modifiedBy;
 
+    private LocalDateTime recentLoginAt;
+
     private boolean agreedMarketingTerms = false;
 
     public User(Builder builder) {

@@ -12,9 +12,9 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserDetails getUserDetails(Long userId) {
-        UserDetails user = this.userRepository.getUserDetails(userId).orElseThrow(
-            () -> new NotFoundException("user_not_found", "no such user", userId.toString())
+    public UserDto getUserDetails(Long userId) {
+        UserDto user = this.userRepository.getUserDetails(userId).orElseThrow(
+            () -> new NotFoundException("user_not_found", "no such user", userId.toString(), null)
         );
         return user;
     }

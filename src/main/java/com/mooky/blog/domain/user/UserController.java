@@ -17,7 +17,7 @@ public class UserController {
     
     @GetMapping("/{userId}")
     public ApiResponse getUserDetails(@PathVariable("userId") int userId) {
-        UserDetails user = this.userService.getUserDetails(Integer.toUnsignedLong(userId));
+        UserDto user = this.userService.getUserDetails(Integer.toUnsignedLong(userId));
         return ApiResponse.ok(user);
     }
 }

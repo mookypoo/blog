@@ -22,9 +22,9 @@ public class UserServiceTest {
     @Test
     public void shouldReturnUserWhenUserExists() {
         when(this.userRepository.getUserDetails(1L))
-            .thenReturn(Optional.of(new UserDetails(1L, "Mooky", "sookim482.dev@gmail.com")));
+            .thenReturn(Optional.of(new UserDto(1L, "Mooky", "sookim482.dev@gmail.com")));
 
-        UserDetails user = this.userService.getUserDetails(1L);
+        UserDto user = this.userService.getUserDetails(1L);
 
         assertThat(user).isNotNull();
         assertThat("Mooky").isEqualTo(user.getUsername());

@@ -6,16 +6,21 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mooky.blog.global.security.JwtService;
+
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Aspect
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class HttpLogger {
   
     @Autowired
     private HttpServletRequest request;
+    private final JwtService jwtService;
 
     // TODO test url with query string 
     @Around("(@annotation(org.springframework.web.bind.annotation.GetMapping)"
@@ -42,7 +47,9 @@ public class HttpLogger {
 
     private String getUserId(String authorizationHeader) {
         if (authorizationHeader != null) {
-            // TODO get user id 
+            String accessToken = authorizationHeader.substring(7);
+            String userId = this.jwtService.getUserIdFromAccessToken(accessToken);
+            return userId;
         }
         return null;
 

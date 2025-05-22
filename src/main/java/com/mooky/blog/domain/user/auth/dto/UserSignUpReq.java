@@ -1,4 +1,4 @@
-package com.mooky.blog.domain.user.auth;
+package com.mooky.blog.domain.user.auth.dto;
 
 import com.mooky.blog.domain.user.constraints.EmailConstraints;
 import com.mooky.blog.domain.user.constraints.PasswordConstraints;

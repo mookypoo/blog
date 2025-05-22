@@ -13,9 +13,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.mooky.blog.domain.user.User;
+import com.mooky.blog.domain.user.UserDto;
 import com.mooky.blog.domain.user.UserRepository;
 import com.mooky.blog.domain.user.User.SignUpType;
-import com.mooky.blog.global.config.SecurityConfig;
+import com.mooky.blog.domain.user.auth.dto.UserSignUpReq;
+import com.mooky.blog.global.config.AppConfig;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -29,7 +31,7 @@ public class AuthServiceTest {
     private UserRepository userRepository;
 
     @Mock
-    private SecurityConfig config;
+    private AppConfig config;
 
     @InjectMocks
     private AuthService authService;
@@ -44,11 +46,11 @@ public class AuthServiceTest {
         // Mock the save method to return the same user that was passed in
         when(this.userRepository.save(userCaptor.capture())).thenAnswer(i -> i.getArgument(0));
 
-        User savedUser = this.authService.signUpBlogUser(req, SignUpType.EMAIL);
+        UserDto userDto = this.authService.signUpBlogUser(req, SignUpType.EMAIL);
 
-        assertThat(savedUser).isNotNull();
-        assertThat(savedUser.getEmail()).isEqualTo("sookim482.dev@gmail.com");
-        assertThat(savedUser.getPassword().startsWith("$2a$"));  
+        assertThat(userDto).isNotNull();
+        assertThat(userDto.getEmail()).isEqualTo("sookim482.dev@gmail.com");
+        //assertThat(userDto.getPassword().startsWith("$2a$"));  
     }
 
 

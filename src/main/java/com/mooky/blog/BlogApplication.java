@@ -2,9 +2,8 @@ package com.mooky.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+@SpringBootApplication
 public class BlogApplication {
 
 	public static void main(String[] args) {
@@ -12,9 +11,10 @@ public class BlogApplication {
 	}
 
 }
-// Done: BlogServiceIntegrationTest; Refactor Blog
+// Done: add auth aspect; login; security config; added jwt service; 
 // To do: use mapstruct library
-// - move user validation to service layer?
-// - refactor BlogController validation 
+// - refactor BlogController validation
 // - Jpa projection (Blog)
-// - blog service test & integration test (when should I do integration tests)
+// - trim String for validation
+
+// TODO for tests : login 

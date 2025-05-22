@@ -8,7 +8,6 @@ import com.mooky.blog.domain.blog.dto.BlogWriteDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,7 +46,8 @@ public class Blog {
     @Column(nullable = false, updatable = false)
     private long authorId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    // TODO REMEMBER - lazy loading 하니까 hibernate selects twice, but eager loading joins the two tables
+    @ManyToOne(optional = false)
     @JoinColumn(name = "authorId", referencedColumnName = "user_id", insertable = false, updatable = false)
     private BlogCreater author;
 

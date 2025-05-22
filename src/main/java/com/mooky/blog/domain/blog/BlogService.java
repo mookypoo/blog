@@ -84,13 +84,13 @@ public class BlogService {
 
     public BlogDetailsDto findBlogUsingNativeQuery(Long blogId) {
         BlogDetailsDto blogDetails = this.blogRepository.findBlogDetailsWithNativeQuery(blogId).orElseThrow(
-                () -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId)));
+                () -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId), null));
         return blogDetails;
     }
 
     public BlogDetailsDto findBlogAndReturnBlogDetails(Long blogId) {
         Blog blogEntity = this.blogRepository.findById(blogId)
-                .orElseThrow(() -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId)));
+                .orElseThrow(() -> new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId), null));
         return new BlogDetailsDto(blogEntity);
     }
 
@@ -102,14 +102,14 @@ public class BlogService {
             this.entityManager.refresh(savedBlog);
             return new BlogDetailsDto(savedBlog);
         } catch (DataIntegrityViolationException ex) {
-            throw new NotFoundException("user_not_found", "없는 사용자입니다.", blogReq.getUserId().toString());
+            throw new NotFoundException("user_not_found", "없는 사용자입니다.", blogReq.getUserId().toString(), null);
         }
     }
     
     public BlogDetailsDto editBlogAndReturnBlogDetails(Long blogId, BlogWriteDto blogReq) {
         int numOfEditedRows = this.blogRepository.editBlog(blogId, blogReq.getTitle(), blogReq.getContent());
         if (numOfEditedRows == 0) {
-            throw new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId));
+            throw new NotFoundException("blog_not_found", "없는 블로그입니다", String.valueOf(blogId), null);
         }
         Optional<Blog> blogEntity = this.blogRepository.findById(blogId);
         return new BlogDetailsDto(blogEntity.get());
