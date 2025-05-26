@@ -1,6 +1,7 @@
 package com.mooky.blog.domain.user.auth;
 
 import java.util.Map;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mooky.blog.domain.user.UserDto;
-import com.mooky.blog.domain.user.User.SignUpType;
-import com.mooky.blog.domain.user.auth.dto.LoginReq;
+import com.mooky.blog.domain.user.auth.dto.EmailLoginReq;
+import com.mooky.blog.domain.user.auth.dto.GoogleLoginReq;
 import com.mooky.blog.domain.user.auth.dto.UserSignUpReq;
+import com.mooky.blog.domain.user.constraints.groups.GoogleSignUpInfo;
+import com.mooky.blog.domain.user.constraints.groups.Password;
 import com.mooky.blog.domain.user.constraints.groups.UserEmail;
 import com.mooky.blog.domain.user.constraints.groups.UserSignUpInfo;
 import com.mooky.blog.domain.user.constraints.groups.Username;
@@ -28,8 +31,15 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup/email")
-    public ApiResponse signUpViaEmail(@Validated({UserSignUpInfo.class, UserEmail.class, Username.class}) @RequestBody UserSignUpReq req) {
-        UserDto user = this.authService.signUpBlogUser(req, SignUpType.EMAIL);
+    public ApiResponse signUpByEmail(
+            @Validated({ UserSignUpInfo.class, UserEmail.class, Password.class }) @RequestBody UserSignUpReq req) {
+        UserDto user = this.authService.signUpByEmail(req);
+        return ApiResponse.ok(user);
+    }
+    
+    @PostMapping("/signup/google")
+    public ApiResponse signUpByGoogle(@Validated({ UserSignUpInfo.class, UserEmail.class, GoogleSignUpInfo.class }) @RequestBody UserSignUpReq req) {
+        UserDto user = this.authService.signUpByGoogle(req);
         return ApiResponse.ok(user);
     }
 
@@ -48,9 +58,18 @@ public class AuthController {
     }
     
     @PostMapping("/login/email") 
-    public ApiResponse emailLogin(@Valid @RequestBody LoginReq req) {
+    public ApiResponse emailLogin(@Valid @RequestBody EmailLoginReq req) {
         UserDto user = this.authService.emailLogin(req);
         return ApiResponse.ok(user);
     }
- 
+
+    @PostMapping("/login/google")
+    public ApiResponse googleLogin(@Valid @RequestBody GoogleLoginReq req) {
+        UserDto user = this.authService.googleLogin(req);
+        if (user == null) {
+            return ApiResponse.ok("unregistered");
+        }
+        return ApiResponse.ok(user);
+    }
+
 }

@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @NoArgsConstructor(force = true)
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-public class LoginReq {
+public class EmailLoginReq {
     @EmailConstraints
     private final String email;
 

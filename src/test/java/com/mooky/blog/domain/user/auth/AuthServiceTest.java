@@ -46,7 +46,7 @@ public class AuthServiceTest {
         // Mock the save method to return the same user that was passed in
         when(this.userRepository.save(userCaptor.capture())).thenAnswer(i -> i.getArgument(0));
 
-        UserDto userDto = this.authService.signUpBlogUser(req, SignUpType.EMAIL);
+        UserDto userDto = this.authService.signUpByEmail(req);
 
         assertThat(userDto).isNotNull();
         assertThat(userDto.getEmail()).isEqualTo("sookim482.dev@gmail.com");

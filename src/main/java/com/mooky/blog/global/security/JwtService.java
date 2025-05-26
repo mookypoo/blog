@@ -16,13 +16,10 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class JwtService {
 
     @Value("${mooky.jwt.secret-key}")
@@ -37,7 +34,7 @@ public class JwtService {
     public String generateToken(User user) {
         String token = Jwts.builder().claims().add("userId", user.getId())
                 .issuedAt(Date.from(Instant.now()))
-                .subject("mooky-blog")
+                .issuer("mooky-blog")
                 .and()
                 .header().add("typ", "JWT")
                 .and()
@@ -51,7 +48,7 @@ public class JwtService {
         Jws<Claims> parsed = Jwts.parser().verifyWith(this.getSigningKey())
                 .build()
                 .parseSignedClaims(accessToken);
-        if (!parsed.getPayload().getSubject().equals("mooky-blog")) {
+        if (!parsed.getPayload().getIssuer().equals("mooky-blog")) {
             throw new AuthException("auth_error", "there was an issue with identifying you", accessToken,
                     "access token subject error");
         }

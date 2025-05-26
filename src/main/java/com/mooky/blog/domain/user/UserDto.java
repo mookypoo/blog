@@ -23,11 +23,11 @@ public class UserDto {
     private final String email;
     private String accessToken;
 
-    public UserDto(User userEntity) {
-        this.userId = userEntity.getId();
-        this.username = userEntity.getUsername();
-        this.email = userEntity.getEmail();
-    }
+    // public UserDto(User userEntity) {
+    //     this.userId = userEntity.getId();
+    //     this.username = userEntity.getUsername();
+    //     this.email = userEntity.getEmail();
+    // }
 
     public UserDto(User userEntity, String accessToken) {
         this.userId = userEntity.getId();
@@ -38,7 +38,7 @@ public class UserDto {
 
     @Override
     public String toString() {     
-        return String.format("UserDto(userId={}, username={}, email={})", 
+        return String.format("UserDto(userId=%s, username=%s, email=%s)", 
                 this.userId, this.username, this.email);
     }
 
