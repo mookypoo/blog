@@ -1,0 +1,27 @@
+2025-05-25 14:54:49,216 WARN o.m.jdbc.message.server.ErrorPacket.warn [Test worker] Error: 1054-42S22: Unknown column 'u1_0.user_id' in 'field list'
+2025-05-25 14:54:49,217 WARN o.h.e.jdbc.spi.SqlExceptionHelper.logExceptions [Test worker] SQL Error: 1054, SQLState: 42S22
+2025-05-25 14:54:49,230 WARN o.m.jdbc.message.server.ErrorPacket.warn [Test worker] Error: 1054-42S22: Unknown column 'u1_0.user_id' in 'field list'
+2025-05-25 14:54:49,230 WARN o.h.e.jdbc.spi.SqlExceptionHelper.logExceptions [Test worker] SQL Error: 1054, SQLState: 42S22
+2025-05-25 14:54:49,998 WARN o.m.jdbc.message.server.ErrorPacket.warn [Test worker] Error: 1452-23000: Cannot add or update a child row: a foreign key constraint fails (`mooky`.`blog`, CONSTRAINT `FK_blog_user_id` FOREIGN KEY (`author_id`) REFERENCES `user` (`user_id`))
+2025-05-25 14:54:49,998 WARN o.h.e.jdbc.spi.SqlExceptionHelper.logExceptions [Test worker] SQL Error: 1452, SQLState: 23000
+2025-05-25 14:59:14,238 WARN o.m.jdbc.message.server.ErrorPacket.warn [Test worker] Error: 1054-42S22: Unknown column 'u1_0.user_id' in 'field list'
+2025-05-25 14:59:14,239 WARN o.h.e.jdbc.spi.SqlExceptionHelper.logExceptions [Test worker] SQL Error: 1054, SQLState: 42S22
+2025-05-25 14:59:14,256 WARN o.m.jdbc.message.server.ErrorPacket.warn [Test worker] Error: 1054-42S22: Unknown column 'u1_0.user_id' in 'field list'
+2025-05-25 14:59:14,256 WARN o.h.e.jdbc.spi.SqlExceptionHelper.logExceptions [Test worker] SQL Error: 1054, SQLState: 42S22
+2025-05-25 14:59:15,419 WARN o.m.jdbc.message.server.ErrorPacket.warn [Test worker] Error: 1452-23000: Cannot add or update a child row: a foreign key constraint fails (`mooky`.`blog`, CONSTRAINT `FK_blog_user_id` FOREIGN KEY (`author_id`) REFERENCES `user` (`user_id`))
+2025-05-25 14:59:15,419 WARN o.h.e.jdbc.spi.SqlExceptionHelper.logExceptions [Test worker] SQL Error: 1452, SQLState: 23000
+2025-05-25 15:12:43,339 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0: Error creating bean with name 'securityFilterChain' defined in class path resource [com/mooky/blog/global/config/SecurityConfig.class]: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'securityFilterChain' threw exception with message: loginPage cannot be empty
+2025-05-25 15:15:11,944 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver.logException [http-nio-8080-exec-2] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-05-25 15:15:23,409 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver.logException [http-nio-8080-exec-3] Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public java.lang.String com.mooky.blog.domain.user.auth.AuthController.googleLogin(java.util.Map<java.lang.String, java.lang.String>)]
+2025-05-25 16:29:13,186 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 6c67dae5-dde6-4980-8917-f265fc70796e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-25 16:34:10,780 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 6e47ae17-c211-443d-95ae-ff5073d39ffc
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+

@@ -48,6 +48,8 @@ for each row
 delete from blog where author_id=OLD.user_id;
 
 
+
+
 create or replace table mooky.terms 
 (
   terms_id      bigint                primary key auto_increment comment 'terms id',

@@ -1,0 +1,10 @@
+2025-05-25 14:54:48,447 INFO c.m.b.domain.blog.BlogControllerTest.logStarting [Test worker] Starting BlogControllerTest using Java 21.0.2 with PID 41889 (started by soo in /Users/soo/Desktop/Portfolio/blog)
+2025-05-25 14:54:48,448 INFO c.m.b.domain.blog.BlogControllerTest.logStartupProfileInfo [Test worker] The following 1 profile is active: "dev"
+2025-05-25 14:54:49,087 INFO c.m.b.domain.blog.BlogControllerTest.logStarted [Test worker] Started BlogControllerTest in 0.676 seconds (process running for 11.376)
+2025-05-25 14:59:10,981 INFO c.m.b.domain.blog.BlogControllerTest.logStarting [Test worker] Starting BlogControllerTest using Java 21.0.2 with PID 42520 (started by soo in /Users/soo/Desktop/Portfolio/blog)
+2025-05-25 14:59:10,982 INFO c.m.b.domain.blog.BlogControllerTest.logStartupProfileInfo [Test worker] The following 1 profile is active: "dev"
+2025-05-25 14:59:13,860 INFO c.m.b.domain.blog.BlogControllerTest.logStarted [Test worker] Started BlogControllerTest in 3.114 seconds (process running for 10.446)
+2025-05-25 15:24:26,365 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [GET] /v1/auth/google [userId: null] [requestId: null] 
+2025-05-25 15:29:37,391 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-10] [HttpRequest] [GET] /v1/auth/google [userId: null] [requestId: null] 
+2025-05-25 16:30:25,296 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-2] [HttpRequest] [POST] /v1/auth/google [userId: null] [requestId: null] [class com.mooky.blog.domain.user.auth.dto.GoogleLoginReq]
+2025-05-25 16:34:14,633 INFO c.m.blog.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [POST] /v1/auth/google [userId: null] [requestId: null] [class com.mooky.blog.domain.user.auth.dto.GoogleLoginReq]

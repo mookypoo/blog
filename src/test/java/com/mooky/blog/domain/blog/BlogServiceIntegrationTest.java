@@ -8,14 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.mooky.blog.domain.blog.dto.BlogWriteDto;
-import com.mooky.blog.domain.blog.dto.BlogDetailsDto;
-import com.mooky.blog.domain.blog.entity.Blog;
-import com.mooky.blog.domain.blog.repository.BlogRepository;
-import com.mooky.blog.domain.user.User;
-import com.mooky.blog.domain.user.UserRepository;
-import com.mooky.blog.domain.user.User.SignUpType;
-import com.mooky.blog.global.exception.ApiException.NotFoundException;
+import com.mooky.pet_diary.domain.blog.BlogService;
+import com.mooky.pet_diary.domain.blog.dto.BlogDetailsDto;
+import com.mooky.pet_diary.domain.blog.dto.BlogWriteDto;
+import com.mooky.pet_diary.domain.blog.entity.Blog;
+import com.mooky.pet_diary.domain.blog.repository.BlogRepository;
+import com.mooky.pet_diary.domain.user.User;
+import com.mooky.pet_diary.domain.user.UserRepository;
+import com.mooky.pet_diary.domain.user.User.SignUpType;
+import com.mooky.pet_diary.global.exception.ApiException.NotFoundException;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;

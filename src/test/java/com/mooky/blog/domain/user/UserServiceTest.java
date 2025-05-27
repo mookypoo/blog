@@ -11,6 +11,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.mooky.pet_diary.domain.user.UserDto;
+import com.mooky.pet_diary.domain.user.UserRepository;
+import com.mooky.pet_diary.domain.user.UserService;
+
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
     @Mock

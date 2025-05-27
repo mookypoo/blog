@@ -1,0 +1,70 @@
+2025-05-27 09:44:53,126 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController': Unsatisfied dependency expressed through field 'userService': Error creating bean with name 'userService' defined in file [/Users/soo/Desktop/Portfolio/pet_diary/build/classes/java/main/com/mooky/pet_diary/domain/user/UserService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.mooky.pet_diary.domain.user.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.mooky.pet_diary.domain.user.UserRepository.getUserDetails(java.lang.Long); Reason: Validation failed for query for method public abstract java.util.Optional com.mooky.pet_diary.domain.user.UserRepository.getUserDetails(java.lang.Long)
+2025-05-27 09:45:47,238 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 74a20dd3-912e-471e-9c3a-5a79b7f34669
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 09:47:27,880 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 4b20b9bf-89cb-400d-819b-6432b6679a29
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 09:49:08,633 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 93a1f09a-8087-4b9d-8bae-8f5494e07694
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 09:50:15,305 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 45040349-3cd4-4b2c-bb37-e2b898464926
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 09:51:11,467 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: b4e701b0-a539-43fb-82fd-d01accdc242f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 09:52:16,095 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 1fb634c4-731e-4e5d-8fc3-78880ce2cb7f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 12:04:38,250 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 8634f953-4ec7-4c3d-a187-d4ed100ff94b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 12:16:54,118 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 24345ff5-e34a-4a75-b593-d225e6ec0e94
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 12:19:31,015 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: d6e42be8-b29f-4b38-8c84-a515d88cb874
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 12:20:52,305 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: e2b713d5-a147-478e-8ada-866db0439a4f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-05-27 12:21:46,868 WARN o.m.jdbc.message.server.ErrorPacket.warn [http-nio-8080-exec-1] Error: 1054-42S22: Unknown column 'status' in 'INSERT INTO'
+2025-05-27 12:21:46,869 WARN o.h.e.jdbc.spi.SqlExceptionHelper.logExceptions [http-nio-8080-exec-1] SQL Error: 1054, SQLState: 42S22
+2025-05-27 12:21:46,877 WARN c.m.p.g.e.ApiExceptionHandler.handleSqlException [http-nio-8080-exec-1] [SqlException] (conn=577) Unknown column 'status' in 'INSERT INTO'
+2025-05-27 12:24:48,784 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 3ec0ad75-1515-46ca-a6f3-55f1763f4f3a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+

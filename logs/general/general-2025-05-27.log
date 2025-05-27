@@ -1,0 +1,8 @@
+2025-05-27 09:51:11,613 INFO c.m.p.global.config.SecurityConfig.securityFilterChain [main] this endpoint=
+2025-05-27 09:52:18,918 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [POST] /v1/auth/login/email [userId: null] [requestId: postman] [class com.mooky.pet_diary.domain.user.auth.dto.EmailLoginReq]
+2025-05-27 09:52:19,010 INFO c.m.p.domain.user.auth.AuthAspect.logLoginAndModifyLoginTime [http-nio-8080-exec-1] [로그인] UserDto(userId=54, username=유저네임, email=sookim482@gmail.com), method=email
+2025-05-27 12:05:41,448 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-3] [HttpRequest] [GET] /v1/blogs/1 [userId: 54] [requestId: postman] 
+2025-05-27 12:21:46,786 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [POST] /v1/auth/signup/email [userId: null] [requestId: postman] [class com.mooky.pet_diary.domain.user.auth.dto.UserSignUpReq]
+2025-05-27 12:21:46,877 WARN c.m.p.g.e.ApiExceptionHandler.handleSqlException [http-nio-8080-exec-1] [SqlException] (conn=577) Unknown column 'status' in 'INSERT INTO'
+2025-05-27 12:25:07,452 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-2] [HttpRequest] [POST] /v1/auth/signup/email [userId: null] [requestId: postman] [class com.mooky.pet_diary.domain.user.auth.dto.UserSignUpReq]
+2025-05-27 12:25:07,624 INFO c.m.p.domain.user.auth.AuthAspect.logSignUp [http-nio-8080-exec-2] [회원가입] UserDto(userId=1, username=기몌수, email=sookim482@gmail.com)

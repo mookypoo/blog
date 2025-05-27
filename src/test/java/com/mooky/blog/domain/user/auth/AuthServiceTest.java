@@ -12,12 +12,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.mooky.blog.domain.user.User;
-import com.mooky.blog.domain.user.UserDto;
-import com.mooky.blog.domain.user.UserRepository;
-import com.mooky.blog.domain.user.User.SignUpType;
-import com.mooky.blog.domain.user.auth.dto.UserSignUpReq;
-import com.mooky.blog.global.config.AppConfig;
+import com.mooky.pet_diary.domain.user.User;
+import com.mooky.pet_diary.domain.user.UserDto;
+import com.mooky.pet_diary.domain.user.UserRepository;
+import com.mooky.pet_diary.domain.user.User.SignUpType;
+import com.mooky.pet_diary.domain.user.auth.AuthService;
+import com.mooky.pet_diary.domain.user.auth.dto.UserSignUpReq;
+import com.mooky.pet_diary.global.config.AppConfig;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
