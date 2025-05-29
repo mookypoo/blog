@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mooky.pet_diary.domain.pet.dto.PetDto;
 import com.mooky.pet_diary.global.ApiResponse;
 import com.mooky.pet_diary.global.security.CurrentUser;
 
@@ -20,8 +21,9 @@ public class PetController {
 
     private final PetService petService;
     
-    @PostMapping("/register")
-    public ApiResponse registerPet(@RequestBody PetDto req, @CurrentUser Long currentUser) {
+    @PostMapping("/create")
+    public ApiResponse createPet(@RequestBody PetDto req, @CurrentUser Long currentUser) {
+        this.petService.createPet(req);
         log.debug("current user: {}", currentUser);
         return ApiResponse.ok("registered");
     }

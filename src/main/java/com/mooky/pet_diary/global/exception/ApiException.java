@@ -42,7 +42,7 @@ public class ApiException extends RuntimeException {
          * @see ApiException
          */
         public AuthException(String error, String errorMessage, String errorValue, String errorTitle) {
-            super(error, errorMessage, "COM_002", errorValue, errorTitle);
+            super(error, errorMessage, "AUTH_003", errorValue, errorTitle);
         }
     }
 

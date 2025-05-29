@@ -1,5 +1,6 @@
-package com.mooky.pet_diary.domain.pet;
+package com.mooky.pet_diary.domain.pet.dto;
 
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,8 @@ import lombok.ToString;
 @ToString
 public class PetDto {
     private final Long petId;
+
+    @Size(min = 1, max = 50, message = "must provide the pet's name")
     private final String name;
     private final String species;
     private final String breed;

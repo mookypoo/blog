@@ -3,7 +3,7 @@ package com.mooky.pet_diary.domain.user;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.mooky.pet_diary.domain.pet.PetSummaryDto;
+import com.mooky.pet_diary.domain.pet.dto.PetSummaryDto;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -26,7 +26,7 @@ import lombok.ToString;
 /**
  * implemented custom Builder class as an example
  */
-@Table(name = "user")
+@Table(name = "usr")
 @Entity
 @NoArgsConstructor
 @SuppressWarnings("unused")
@@ -58,7 +58,7 @@ public class User {
     @Basic(fetch = FetchType.LAZY) // large Serializable object 
     private @Getter String password;
 
-    private String status = "ACTIVE";
+    //private String status = "ACTIVE";
 
     @Column(updatable = false, insertable = false) 
     private LocalDateTime createdAt;

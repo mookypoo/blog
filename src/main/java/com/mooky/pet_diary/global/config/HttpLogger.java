@@ -42,9 +42,9 @@ public class HttpLogger {
                 }
             }
         }
-
+        
         Long userId = SecurityContextHolder.getContext().getAuthentication() == null ? null
-                : (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                : Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
  
         log.info("[HttpRequest] [{}] {}{} [userId={}, requestId={}] {}", reqMethod, request.getRequestURI(), pathParams,
                 userId, request.getHeader("x-request-id"), bodyString);

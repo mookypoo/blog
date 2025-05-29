@@ -3,6 +3,8 @@ package com.mooky.pet_diary.domain.pet;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.mooky.pet_diary.domain.pet.dto.PetDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

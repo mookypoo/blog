@@ -1,4 +1,4 @@
-package com.mooky.pet_diary.domain.pet;
+package com.mooky.pet_diary.domain.pet.dto;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

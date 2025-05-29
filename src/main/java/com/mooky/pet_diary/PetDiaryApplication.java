@@ -11,8 +11,8 @@ public class PetDiaryApplication {
 	}
 
 }
-// Done: add JwtAuthFilter into security config for accessToken detection; CurrentUser resolver that gets userId
-// To do: redo jwt with access and refresh token
+// Done: refactor JwtAuthFilter to send appropriate error response; 
+// To do: 
 // - use mapstruct library
 // - refactor BlogController validation
 // - Jpa projection (Blog)

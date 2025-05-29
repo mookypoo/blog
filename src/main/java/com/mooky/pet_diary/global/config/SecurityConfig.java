@@ -12,9 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.mooky.pet_diary.global.security.JwtAuthFilter;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -33,6 +31,7 @@ public class SecurityConfig {
                         .requestMatchers(v1Endpoint + "/auth/**")
                         .permitAll()
                         .anyRequest().authenticated())
+                .anonymous(anonymous -> anonymous.disable())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf((csrf) -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
