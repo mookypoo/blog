@@ -9,7 +9,7 @@
     <include resource="Logback/error-log.xml"/>
 
     <!-- withhout logger scheme, appender is not referenced and therefore, not used  -->
-    <logger name="com.mooky.blog.global" additivity="false" level="debug">
+    <logger name="com.mooky.pet_diary.global" additivity="false" level="debug">
         <appender-ref ref="GeneralLog" />
         <appender-ref ref="WarnLog" />
         <appender-ref ref="ErrorLog" />
@@ -18,7 +18,7 @@
         </springProfile>
     </logger>
 
-      <logger name="com.mooky.blog.domain" additivity="false" level="debug">
+      <logger name="com.mooky.pet_diary.domain" additivity="false" level="debug">
         <appender-ref ref="GeneralLog" />
         <appender-ref ref="WarnLog" />
         <appender-ref ref="ErrorLog" />

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mooky.blog.domain.blog.constraints.SaveBlog;
 import com.mooky.blog.domain.blog.dto.BlogDetailsDto;
 import com.mooky.blog.domain.blog.dto.BlogWriteDto;
-import com.mooky.blog.global.ApiResponse;
+import com.mooky.pet_diary.global.ApiResponse;
 
 import jakarta.validation.Valid;
 import jakarta.validation.Validation;

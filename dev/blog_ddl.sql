@@ -8,7 +8,7 @@ create or replace table mooky.blog
   created_by    varchar(20)           default 'SYSTEM',
   modified_at   datetime              comment '업데이트 일시',
   modified_by   varchar(20)           comment '사용자 AUTHOR',
-  constraint FK_blog_user_id foreign key (user_id) references mooky.user (user_id)
+  constraint FK_blog_user_id foreign key (author_id) references mooky.user (user_id)
 )
   comment '블로그';
 

@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-import com.mooky.blog.domain.user.constraints.EmailValidator;
-import com.mooky.blog.domain.user.constraints.PasswordValidator;
-import com.mooky.blog.domain.user.constraints.UsernameValidator;
+import com.mooky.pet_diary.domain.user.constraints.EmailValidator;
+import com.mooky.pet_diary.domain.user.constraints.PasswordValidator;
+import com.mooky.pet_diary.domain.user.constraints.UsernameValidator;
 
 
 public class UserConstraintsTest {
