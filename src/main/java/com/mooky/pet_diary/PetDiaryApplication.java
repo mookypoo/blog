@@ -11,7 +11,7 @@ public class PetDiaryApplication {
 	}
 
 }
-// Done: refactor JwtAuthFilter to send appropriate error response; 
+// Done: add S3Service, presignedUrl, create pet, get pet
 // To do: 
 // - use mapstruct library
 // - refactor BlogController validation

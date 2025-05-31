@@ -37,6 +37,15 @@ public class ApiException extends RuntimeException {
         }
     }
 
+    public static class InvalidArgsException extends ApiException {
+        /**
+         * @see ApiException
+         */
+        public InvalidArgsException(String error, String errorMessage, String errorValue, String errorTitle) {
+            super(error, errorMessage, "COM_002", errorValue, errorTitle);
+        }
+    }
+
     public static class AuthException extends ApiException {
         /**
          * @see ApiException

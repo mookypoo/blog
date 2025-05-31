@@ -12,10 +12,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
 
 
 @Entity
 @Table
+@Getter
 public class Pet {
     @Id
     @Column(name = "pet_id")

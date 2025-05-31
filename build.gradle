@@ -44,6 +44,9 @@ dependencies {
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
 
 	implementation 'com.google.api-client:google-api-client:1.32.1' // google
+
+	// aws
+	implementation 'software.amazon.awssdk:s3:2.20.56'
 	
 	// test 관련 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

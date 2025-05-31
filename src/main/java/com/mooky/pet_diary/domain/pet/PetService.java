@@ -13,8 +13,9 @@ public class PetService {
     
     private final PetRepository petRepository;
 
-    public void createPet(PetDto petDto) {
-        
+    public PetDto createPet(PetDto petDto, Long userId) {
+        Pet savedPet = this.petRepository.save(new Pet(petDto, userId));
+        return new PetDto(savedPet);
     }
 
 }

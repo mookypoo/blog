@@ -23,8 +23,7 @@ public class PetController {
     
     @PostMapping("/create")
     public ApiResponse createPet(@RequestBody PetDto req, @CurrentUser Long currentUser) {
-        this.petService.createPet(req);
-        log.debug("current user: {}", currentUser);
-        return ApiResponse.ok("registered");
+        PetDto pet = this.petService.createPet(req, currentUser);
+        return ApiResponse.ok(pet);
     }
 }
