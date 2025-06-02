@@ -1,7 +1,6 @@
 package com.mooky.pet_diary.domain.pet;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 import com.mooky.pet_diary.domain.pet.dto.PetDto;
 
@@ -11,18 +10,23 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pet {
     @Id
     @Column(name = "pet_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private @Setter Long id;
 
     private Long ownerId;
 
@@ -40,20 +44,17 @@ public class Pet {
 
     private String profilePhoto;
 
-    // create pet
-    // TODO catch null pointer exception
-    public Pet(PetDto petDto, Long ownerId) {
-        this.ownerId = Objects.requireNonNull(ownerId, "Owner ID cannot be null");
-        this.name = Objects.requireNonNull(petDto.getName(), "pet name cannot be null");
-        this.species = petDto.getSpecies();
-        this.breed = petDto.getBreed();
-        this.birthDate = this.parseDate(petDto.getBirthDate());
-        this.adoptionDate = this.parseDate(petDto.getAdoptionDate());
-        this.description = petDto.getDescription();
-        this.profilePhoto = petDto.getProfilePhoto();
+    public static Pet fromPetDto(PetDto petDto, Long ownerId) {
+        return new PetBuilder()
+                .ownerId(ownerId)
+                .name(petDto.getName())
+                .species(petDto.getSpecies())
+                .breed(petDto.getBreed())
+                .birthDate(petDto.getBirthDate())
+                .adoptionDate(petDto.getAdoptionDate())
+                .description(petDto.getDescription())
+                .profilePhoto(petDto.getProfilePhoto())
+                .build();
     }
-
-    private LocalDate parseDate(String dateString) {
-        return dateString != null && !dateString.isBlank() ? LocalDate.parse(dateString) : null;
-    }
+   
 }

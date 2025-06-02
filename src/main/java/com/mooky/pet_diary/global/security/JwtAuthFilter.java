@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mooky.pet_diary.global.ApiResponse;
 import com.mooky.pet_diary.global.exception.ApiException;
@@ -31,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  * <p> 
  * ApiResponse.error with errorCode "AUTH_002" if invalid jwt token
  * <p>
- * ApiResponse.error with errorCode "AUTH_003" for other exceptions
+ * ApiResponse.error with errorCode "AUTH_003" for other auth exceptions
  */
 @Slf4j
 @Component
@@ -43,38 +44,55 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        String authHeader = request.getHeader("Authorization");
 
-        if (authHeader == null || !authHeader.startsWith("Bearer") || authHeader.length() < 7) {
+        String token = this.extractTokenFromRequest(request);
+        if (token == null) {
             this.setErrorResponse(response, ApiResponse.error("auth_error", "AUTH_001", "no jwt token"));
             return;
         }
 
         try {
-
-            String token = authHeader.substring(7);
-            Long userId = this.jwtService.getUserIdFromAccessToken(token);
-            if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userId,
-                        null, Collections.emptyList());
-                SecurityContextHolder.getContext().setAuthentication(authToken);
-            }
+            this.authenticateUser(token);
             filterChain.doFilter(request, response);
 
+        } catch (ServletException ex) {
+            log.error("[Servlet Exception] {}", ex.getMessage());
+            throw ex;
+        } catch (IOException ex) {
+            log.error("[IO Exception] {}", ex.getMessage());
+            throw ex;
+        } catch (ApiException ex) {
+            this.setErrorResponse(response, ApiResponse.error(ex));
         } catch (Exception ex) {
-            log.debug("do filter internal exception : type={}", ex.getClass());
-            ApiResponse res;
-            if (ex instanceof ApiException) {
-                res = ApiResponse.error((ApiException) ex);
-            } else {
-                res = ApiResponse.error("auth_error", "AUTH_003", ex.getMessage());
-            }
-            this.setErrorResponse(response, res);
+            this.setErrorResponse(response, ApiResponse.error("auth_error", "AUTH_003", ex.getMessage()));
         }
-
     }
     
-    private void setErrorResponse(HttpServletResponse response, ApiResponse res) throws IOException {
+    /**
+     * @return null if not valid authorization header
+     */
+    private String extractTokenFromRequest(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer") || authHeader.length() < 7) {
+            return null;
+        }
+        return authHeader.substring(7);
+    }
+
+    /**
+     * sets the userId as SecurityContextHolder's authentication, which is later used to find out @CurrentUser
+     * @see CurrentUser
+     */
+    private void authenticateUser(String token) {
+        Long userId = this.jwtService.getUserIdFromAccessToken(token);
+        if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userId,
+                    null, Collections.emptyList());
+            SecurityContextHolder.getContext().setAuthentication(authToken);
+        }
+    }
+    
+    private void setErrorResponse(HttpServletResponse response, ApiResponse res) throws JsonProcessingException, IOException {
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

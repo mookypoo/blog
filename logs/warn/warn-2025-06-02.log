@@ -1,0 +1,79 @@
+2025-06-02 11:53:03,382 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 91e45845-7f7e-4ab0-a9f1-11011be3fd5f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 11:53:17,320 WARN o.s.w.s.m.s.DefaultHandlerExceptionResolver.logException [http-nio-8080-exec-1] Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'petId': Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: "{petId}"]
+2025-06-02 11:53:56,131 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-3] [Auth Error] error=auth_error, errorCode=AUTH_003, errorMessage=Request processing failed: org.springframework.orm.jpa.JpaSystemException: No default constructor for entity 'com.mooky.pet_diary.domain.pet.Pet'
+2025-06-02 12:13:49,568 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 0168b911-e131-4ff8-a2d6-26491d409337
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 12:58:54,338 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'petController' defined in file [/Users/soo/Desktop/Portfolio/pet_diary/build/classes/java/main/com/mooky/pet_diary/domain/pet/PetController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'petService' defined in file [/Users/soo/Desktop/Portfolio/pet_diary/build/classes/java/main/com/mooky/pet_diary/domain/pet/PetService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'petRepository' defined in com.mooky.pet_diary.domain.pet.PetRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int com.mooky.pet_diary.domain.pet.PetRepository.updatePet(java.lang.Long,java.lang.Long,com.mooky.pet_diary.domain.pet.dto.PetDto); Reason: Validation failed for query for method public abstract int com.mooky.pet_diary.domain.pet.PetRepository.updatePet(java.lang.Long,java.lang.Long,com.mooky.pet_diary.domain.pet.dto.PetDto)
+2025-06-02 13:00:41,283 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 33406b79-bef6-4d7b-b4db-1c5f3e7f6859
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:04:08,374 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'petController' defined in file [/Users/soo/Desktop/Portfolio/pet_diary/build/classes/java/main/com/mooky/pet_diary/domain/pet/PetController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'petService' defined in file [/Users/soo/Desktop/Portfolio/pet_diary/build/classes/java/main/com/mooky/pet_diary/domain/pet/PetService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'petRepository' defined in com.mooky.pet_diary.domain.pet.PetRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int com.mooky.pet_diary.domain.pet.PetRepository.updatePet(java.lang.Long,java.lang.Long,com.mooky.pet_diary.domain.pet.dto.PetDto); Reason: Validation failed for query for method public abstract int com.mooky.pet_diary.domain.pet.PetRepository.updatePet(java.lang.Long,java.lang.Long,com.mooky.pet_diary.domain.pet.dto.PetDto)
+2025-06-02 13:04:41,451 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 0ed199d9-efa8-4cf0-808f-0731d21c364b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:08:13,524 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: fb3cb01c-4b20-44c6-92c2-4473cef98ba9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:09:45,602 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: acc2bdad-a0e6-4ff3-b681-efff9ccacb25
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:10:41,844 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 9d5fab45-6ff0-4172-89e7-2b291c7349b3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:12:32,294 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 6a32dc81-134f-4a9c-915d-bc67efbaa65b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:13:20,061 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'petController' defined in file [/Users/soo/Desktop/Portfolio/pet_diary/build/classes/java/main/com/mooky/pet_diary/domain/pet/PetController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'petService' defined in file [/Users/soo/Desktop/Portfolio/pet_diary/build/classes/java/main/com/mooky/pet_diary/domain/pet/PetService.class]: Could not generate CGLIB subclass of class com.mooky.pet_diary.domain.pet.PetService: Common causes of this problem include using a final class or a non-visible class
+2025-06-02 13:13:44,665 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 1427a3fc-a97e-4eeb-b62f-1c3ba3ba111a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:18:07,692 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 4b4fbe4e-a156-4cd2-a517-5f64e7ad3056
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:18:15,345 WARN c.m.p.g.e.ApiExceptionHandler.handleJsonMappingException [http-nio-8080-exec-2] [JsonMappingException] Infinite recursion (StackOverflowError) (through reference chain: com.mooky.pet_diary.global.ApiResponse["payload"])
+2025-06-02 13:19:24,584 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 339f81fe-5b83-43b3-846c-1a81f8345c99
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:23:24,576 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 483f558c-53e0-4b59-9c66-2b6db73adee7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-02 13:23:27,062 WARN c.m.p.g.e.ApiExceptionHandler.handleApiException [http-nio-8080-exec-2] [NotFoundException] [errorValue=petId=1 userId=1, error=invalid_data, errorMessage=pet not found or access denied, errorCode=COM_004] [com.mooky.pet_diary.domain.pet.PetService.updatePetUsingQuery(PetService.java:39)]

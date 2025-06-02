@@ -1,2 +1,0 @@
-2025-05-28 14:43:29,515 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [POST] /v1/pets/register [userId: 1] [requestId: postman] 
-2025-05-28 14:50:57,369 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-2] [HttpRequest] [POST] /v1/pets/register [userId=1, requestId=postman]

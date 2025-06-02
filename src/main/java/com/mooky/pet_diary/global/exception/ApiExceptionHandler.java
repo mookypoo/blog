@@ -2,6 +2,7 @@ package com.mooky.pet_diary.global.exception;
 
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.format.DateTimeParseException;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mooky.pet_diary.global.ApiResponse;
 import com.mooky.pet_diary.global.exception.ApiException.NotFoundException;
 
@@ -50,7 +52,7 @@ public class ApiExceptionHandler {
         String message = fieldError != null ? fieldError.getDefaultMessage() : "invalid body argument";
         log.warn("[MethodArgumentNotValidException] {}; fieldName={}; rejectedValue={}",
             message, fieldName, rejectedValue);
-        return ResponseEntity.status(400).body(ApiResponse.error("invalid_argument", "COM_001", message));
+        return ResponseEntity.status(400).body(ApiResponse.error("invalid_argument", "COM_002", message));
     }
 
 
@@ -68,6 +70,20 @@ public class ApiExceptionHandler {
         }
         log.warn("[SqlException] {}", ex.getMessage());
         return ResponseEntity.status(status).body(ApiResponse.error(error, errorCode, errorMessage));
+    }
+
+    @ExceptionHandler(JsonMappingException.class)
+    public ResponseEntity<ApiResponse> handleJsonMappingException(JsonMappingException ex) {
+        String error = "invalid_data";
+        int status = 400;
+        String errorMessage = "there was a problem processing your data; please check them again";
+        String logError = ex.getMessage();
+        if (ex.getCause() instanceof DateTimeParseException) {
+            logError = "DateTimeParseException " + ((DateTimeParseException) ex.getCause()).getParsedString();
+            errorMessage = "date should be YYYY-MM-DD format";
+        }
+        log.warn("[JsonMappingException] {}", logError);
+        return ResponseEntity.status(status).body(ApiResponse.error(error, "COM_002", errorMessage));
     }
 
 }

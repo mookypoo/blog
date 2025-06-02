@@ -37,6 +37,9 @@ public class ApiException extends RuntimeException {
         }
     }
 
+    /**
+     * same error code as when handling MethodArgumentNotValidException, JsonMappingException
+     */
     public static class InvalidArgsException extends ApiException {
         /**
          * @see ApiException
