@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mooky.blog.domain.blog.dto.BlogWriteDto;
+import com.mooky.blog.domain.blog.BlogService;
 import com.mooky.blog.domain.blog.dto.BlogDetailsDto;
 import com.mooky.blog.domain.blog.entity.Blog;
 import com.mooky.blog.domain.blog.repository.BlogRepository;

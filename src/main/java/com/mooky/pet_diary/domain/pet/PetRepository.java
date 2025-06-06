@@ -7,11 +7,12 @@ import org.springframework.data.repository.query.Param;
 
 import com.mooky.pet_diary.domain.pet.dto.PetDto;
 
+// TODO modifiedAt
 public interface PetRepository extends JpaRepository<Pet, Long> {
     
     @Modifying
     @Query("UPDATE Pet p SET p.name = :#{#petDto.name}, p.species = :#{#petDto.species}, p.breed = :#{#petDto.breed}, " +
         " p.birthDate = :#{#petDto.birthDate}, p.adoptionDate = :#{#petDto.adoptionDate}, p.description = :#{#petDto.description}, " + 
-        "p.profilePhoto = :#{#petDto.profilePhoto} WHERE p.id = :petId AND p.ownerId = ownerId")
+        "p.profilePhoto = :#{#petDto.profilePhoto}, p.modifiedAt = CURRENT_TIMESTAMP WHERE p.id = :petId AND p.ownerId = :ownerId")
     int updatePet(@Param("petId") Long petId, @Param("ownerId") Long ownerId, @Param("petDto") PetDto petDto);
 }

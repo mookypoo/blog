@@ -2,21 +2,36 @@ package com.mooky.pet_diary.domain.pet.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mooky.pet_diary.domain.pet.Pet;
+import com.mooky.pet_diary.domain.pet.UpdatePet;
 import com.mooky.pet_diary.global.util.S3UrlUtil;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.jackson.Jacksonized;
 
+/**
+ * when creating pet for the first time and there is a profile photo: 
+ * (1) get a presigned url via "/v1/s3/presigned-url"
+ * (2) upload on presigned url
+ * (3) send only the key back = profilePhoto
+ * <p>
+ * "profilePhoto" is the key to the s3 object --> need to send this when updating pet (or a new key through the same process as above)
+ * <p>
+ * "profilePhotoUrl" is the full url for which the user can see the photo
+ */
 @Builder
 @Jacksonized
 @Getter
 @ToString
 public class PetDto {
+    @NotNull(message = "pet id is required", groups = UpdatePet.class)
     private final Long petId;
 
     @NotBlank(message = "pet name is required")
@@ -41,7 +56,7 @@ public class PetDto {
                 .build();
     }
 
-    public String getProfilePhoto() {
+    public String getProfilePhotoUrl() {
         return S3UrlUtil.buildUrl(this.profilePhoto);
     }
 

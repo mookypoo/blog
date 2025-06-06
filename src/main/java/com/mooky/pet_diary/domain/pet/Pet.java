@@ -1,6 +1,7 @@
 package com.mooky.pet_diary.domain.pet;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.mooky.pet_diary.domain.pet.dto.PetDto;
 
@@ -43,6 +44,8 @@ public class Pet {
     private String description;
 
     private String profilePhoto;
+
+    private LocalDateTime modifiedAt;
 
     public static Pet fromPetDto(PetDto petDto, Long ownerId) {
         return new PetBuilder()

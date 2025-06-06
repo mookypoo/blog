@@ -30,6 +30,11 @@ public class AuthController {
 
     private final AuthService authService;
 
+    @PostMapping("/cool")
+    public ApiResponse test() {
+        return ApiResponse.ok("cool");
+    }
+
     @PostMapping("/signup/email")
     public ApiResponse signUpByEmail(
             @Validated({ UserSignUpInfo.class, UserEmail.class, Password.class }) @RequestBody UserSignUpReq req) {

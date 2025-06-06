@@ -1,6 +1,7 @@
 package com.mooky.pet_diary.domain.pet;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import com.mooky.pet_diary.domain.pet.dto.PetDto;
 import com.mooky.pet_diary.global.ApiResponse;
 import com.mooky.pet_diary.global.security.CurrentUser;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -22,8 +24,8 @@ public class PetController {
 
     private final PetService petService;
     
-    @PostMapping("/create")
-    public ApiResponse createPet(@RequestBody PetDto req, @CurrentUser Long currentUser) {
+    @PostMapping
+    public ApiResponse createPet(@Valid @RequestBody PetDto req, @CurrentUser Long currentUser) {
         PetDto pet = this.petService.createPet(req, currentUser);
         return ApiResponse.ok(pet);
     }
@@ -35,9 +37,8 @@ public class PetController {
     }
 
     @PutMapping("/{petId}")
-    public ApiResponse updatePet(@PathVariable Long petId, @RequestBody PetDto petDto, @CurrentUser Long currentUser) {
-        //PetDto pet = this.petService.updatePet(petId, petDto, currentUser);
-        PetDto pet = this.petService.updatePetUsingQuery(petId, petDto, currentUser);
+    public ApiResponse updatePet(@PathVariable Long petId, @Validated(UpdatePet.class) @RequestBody PetDto petDto, @CurrentUser Long currentUser) {
+        PetDto pet = this.petService.updatePet(petId, petDto, currentUser);
         return ApiResponse.ok(pet);
     }
 }

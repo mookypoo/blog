@@ -13,7 +13,10 @@ public class PetDiaryApplication {
 	}
 
 }
-// Done: add JsonMappingExceptionHandler, S3UrlUtil for photo url, refactor jwtAuthFilter, update pet
+
+// Done: 
+// unit and integration pet test; refactor security config to separate
+// private and public endpoints; JwtAuthFilter only runs on privatae endpoints;
 // To do: 
 // - use mapstruct library
 // - refactor BlogController validation

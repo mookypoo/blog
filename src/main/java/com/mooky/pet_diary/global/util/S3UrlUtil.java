@@ -20,7 +20,8 @@ public class S3UrlUtil {
 
     public static String buildUrl(String key) {
         return key == null || key.trim().isEmpty()
-            ? null  
-            : s3BaseUrl + "/" + key.trim();
+                ? null
+                : s3BaseUrl + "/" + key.trim();
     }
+
 }

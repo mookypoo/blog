@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 public class PetService {
-    
+
     private final PetRepository petRepository;
 
     public PetDto createPet(PetDto petDto, Long currentUserId) {
@@ -31,12 +31,22 @@ public class PetService {
 
         return PetDto.fromEntity(savedPet);
     }
-    
+
+    // @Transactional
+    // public PetDto updatePet(Long petId, PetDto petDto, Long currentUserId) {
+    //     int updatedRow = this.petRepository.updatePet(petId, currentUserId, petDto);
+    //     if (updatedRow != 1) {
+    //         throw new NotFoundException("pet_not_found", "pet not found or access denied",
+    //                 "petId=" + petId + " userId=" + currentUserId, null);
+    //     }
+    //     return petDto;
+    // }
+
     @Transactional
-    public PetDto updatePetUsingQuery(Long petId, PetDto petDto, Long currentUserId) {
+    public PetDto updatePet(Long petId, PetDto petDto, Long currentUserId) {
         int updatedRow = this.petRepository.updatePet(petId, currentUserId, petDto);
         if (updatedRow != 1) {
-            throw new NotFoundException("invalid_data", "pet not found or access denied",
+            throw new NotFoundException("pet_not_found", "pet not found or access denied",
                     "petId=" + petId + " userId=" + currentUserId, null);
         }
         return petDto;
