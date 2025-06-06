@@ -20,9 +20,8 @@ import org.testcontainers.utility.DockerImageName;
 
 import com.mooky.pet_diary.domain.pet.dto.PetDto;
 import com.mooky.pet_diary.domain.user.User;
-import com.mooky.pet_diary.domain.user.UserRepository;
-
 import com.mooky.pet_diary.domain.user.User.SignUpType;
+import com.mooky.pet_diary.domain.user.repository.UserRepository;
 import com.mooky.pet_diary.global.exception.ApiException.NotFoundException;
 
 @SpringBootTest

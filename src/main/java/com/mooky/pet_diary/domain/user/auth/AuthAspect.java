@@ -5,8 +5,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import com.mooky.pet_diary.domain.user.UserDto;
-import com.mooky.pet_diary.domain.user.UserRepository;
+import com.mooky.pet_diary.domain.user.dto.UserDto;
+import com.mooky.pet_diary.domain.user.repository.UserRepository;
 import com.mooky.pet_diary.global.ApiResponse;
 
 import lombok.AccessLevel;

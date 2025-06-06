@@ -1,7 +1,8 @@
-package com.mooky.pet_diary.domain.user;
+package com.mooky.pet_diary.domain.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.mooky.pet_diary.domain.user.User;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +23,6 @@ public class UserDto {
     private final String username;
     private final String email;
     private String accessToken;
-
-    // public UserDto(User userEntity) {
-    //     this.userId = userEntity.getId();
-    //     this.username = userEntity.getUsername();
-    //     this.email = userEntity.getEmail();
-    // }
 
     public UserDto(User userEntity, String accessToken) {
         this.userId = userEntity.getId();

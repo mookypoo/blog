@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mooky.pet_diary.domain.user.UserDto;
 import com.mooky.pet_diary.domain.user.auth.dto.EmailLoginReq;
 import com.mooky.pet_diary.domain.user.auth.dto.GoogleLoginReq;
 import com.mooky.pet_diary.domain.user.auth.dto.UserSignUpReq;
@@ -17,6 +16,7 @@ import com.mooky.pet_diary.domain.user.constraints.groups.Password;
 import com.mooky.pet_diary.domain.user.constraints.groups.UserEmail;
 import com.mooky.pet_diary.domain.user.constraints.groups.UserSignUpInfo;
 import com.mooky.pet_diary.domain.user.constraints.groups.Username;
+import com.mooky.pet_diary.domain.user.dto.UserDto;
 import com.mooky.pet_diary.global.ApiResponse;
 
 import jakarta.validation.Valid;

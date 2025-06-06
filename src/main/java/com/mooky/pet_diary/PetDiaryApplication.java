@@ -14,9 +14,7 @@ public class PetDiaryApplication {
 
 }
 
-// Done: 
-// unit and integration pet test; refactor security config to separate
-// private and public endpoints; JwtAuthFilter only runs on privatae endpoints;
+// Done: get UserProfileDto with PetSummaryDto;
 // To do: 
 // - use mapstruct library
 // - refactor BlogController validation

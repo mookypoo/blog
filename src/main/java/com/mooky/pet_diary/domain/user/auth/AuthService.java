@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.mooky.pet_diary.domain.user.User;
-import com.mooky.pet_diary.domain.user.UserDto;
-import com.mooky.pet_diary.domain.user.UserRepository;
 import com.mooky.pet_diary.domain.user.User.SignUpType;
 import com.mooky.pet_diary.domain.user.auth.dto.EmailLoginReq;
 import com.mooky.pet_diary.domain.user.auth.dto.GoogleLoginReq;
 import com.mooky.pet_diary.domain.user.auth.dto.UserSignUpReq;
+import com.mooky.pet_diary.domain.user.dto.UserDto;
+import com.mooky.pet_diary.domain.user.repository.UserRepository;
 import com.mooky.pet_diary.global.config.AppConfig;
 import com.mooky.pet_diary.global.exception.ApiException.AuthException;
 import com.mooky.pet_diary.global.exception.ApiException.InUseException;

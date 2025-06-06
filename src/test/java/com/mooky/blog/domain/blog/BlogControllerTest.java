@@ -20,8 +20,8 @@ import org.testcontainers.utility.DockerImageName;
 import com.mooky.blog.domain.blog.BlogService;
 import com.mooky.blog.domain.blog.dto.BlogWriteDto;
 import com.mooky.pet_diary.domain.user.User;
-import com.mooky.pet_diary.domain.user.UserRepository;
 import com.mooky.pet_diary.domain.user.User.SignUpType;
+import com.mooky.pet_diary.domain.user.repository.UserRepository;
 
 import io.restassured.RestAssured;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

@@ -14,8 +14,8 @@ import com.mooky.blog.domain.blog.dto.BlogDetailsDto;
 import com.mooky.blog.domain.blog.entity.Blog;
 import com.mooky.blog.domain.blog.repository.BlogRepository;
 import com.mooky.pet_diary.domain.user.User;
-import com.mooky.pet_diary.domain.user.UserRepository;
 import com.mooky.pet_diary.domain.user.User.SignUpType;
+import com.mooky.pet_diary.domain.user.repository.UserRepository;
 import com.mooky.pet_diary.global.exception.ApiException.NotFoundException;
 
 import jakarta.persistence.EntityManager;
