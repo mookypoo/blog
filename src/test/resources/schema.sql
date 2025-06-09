@@ -1,7 +1,7 @@
-create database if not exists pet_diary;
-use pet_diary;
+create database if not exists pet_diary_test;
+use pet_diary_test;
 
-create table if not exists pet_diary.usr 
+create table if not exists pet_diary_test.usr 
 (
     user_id         bigint          primary key auto_increment comment 'user_id',
     username        varchar(25)     not null unique,
@@ -18,7 +18,7 @@ create table if not exists pet_diary.usr
 )
     comment '펫 다이어리 사용자 마스터 테이블';
 
-create table if not exists pet_diary.pet 
+create table if not exists pet_diary_test.pet 
 (
     pet_id          bigint          primary key auto_increment comment 'pet id',
     owner_id        bigint          not null comment 'owner_id',
@@ -31,7 +31,7 @@ create table if not exists pet_diary.pet
     profile_photo   varchar(200)    comment 'amazon s3 url',
     created_at      datetime        default current_timestamp(),
     modified_at     datetime        comment '정보 업데이트 일시',
-    constraint FK_pet_user_id foreign key (owner_id) references pet_diary.usr (user_id)
+    constraint FK_pet_user_id foreign key (owner_id) references pet_diary_test.usr (user_id)
 )
     comment '반려동물 마스터 테이블';
 

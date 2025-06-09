@@ -1,12 +1,10 @@
 spring:
-  profiles: 
-    active:
-      - dev
+    profiles: 
+        active:
+            - dev
     
-  config: 
-    import: secrets.yml
+    config: 
+        import: secrets.yml
 
-  sql:
-    'init.mode': always
-
-
+    sql:
+        'init.mode': always

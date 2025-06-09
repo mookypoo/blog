@@ -1,7 +1,6 @@
 package com.mooky.pet_diary.domain.pet;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -18,16 +17,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
-import com.mooky.pet_diary.domain.pet.dto.PetDto;
-import com.mooky.pet_diary.global.security.JwtService;
 
 @WebMvcTest(controllers = PetController.class, excludeAutoConfiguration = SecurityAutoConfiguration.class) // need to exclude SecurityAutoConfiguration so that the requests come through 
 public class PetControllerUnitTest {
@@ -83,6 +77,7 @@ public class PetControllerUnitTest {
         verify(this.petService, times(1)).createPet(any(), any());
     }
 
+    // TODO test
     @Test
     public void updatePet_NoPetId_ReturnMethodArgumentNotValidException() throws Exception {
         String requestBody = """

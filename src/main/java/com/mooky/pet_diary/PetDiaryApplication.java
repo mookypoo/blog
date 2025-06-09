@@ -14,7 +14,7 @@ public class PetDiaryApplication {
 
 }
 
-// Done: get UserProfileDto with PetSummaryDto;
+// Done: DBIntegrationTestHelper class for integration test; refactor jwt to use access token and refresh token; refactor api exception
 // To do: 
 // - use mapstruct library
 // - refactor BlogController validation

@@ -10,53 +10,23 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.MariaDBContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 
+import com.mooky.pet_diary.DBIntegrationTestHelper;
 import com.mooky.pet_diary.domain.pet.dto.PetDto;
 import com.mooky.pet_diary.domain.user.User;
-import com.mooky.pet_diary.domain.user.User.SignUpType;
 import com.mooky.pet_diary.domain.user.repository.UserRepository;
-import com.mooky.pet_diary.global.exception.ApiException.NotFoundException;
+import com.mooky.pet_diary.global.exception.NotFoundException;
+
+import jakarta.transaction.Transactional;
 
 @SpringBootTest
-@Testcontainers
-public class PetServiceDBIntegrationTest {
-
+public class PetServiceDBIntegrationTest extends DBIntegrationTestHelper {
+    
     private @Autowired PetService petService;
     private @Autowired PetRepository petRepository;
     private @Autowired UserRepository userRepository;
 
-    @Container
-    static public MariaDBContainer<?> mariaDB = new MariaDBContainer<>(DockerImageName.parse("mariadb:10.5.5"))
-            .withDatabaseName("pet_diary")
-            .withUsername("testuser")
-            .withPassword("testpassword")
-            .withInitScript("schema.sql");
-
-    @DynamicPropertySource
-    static public void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", mariaDB::getJdbcUrl);
-        registry.add("spring.datasource.username", mariaDB::getUsername);
-        registry.add("spring.datasource.password", mariaDB::getPassword);
-    }
-
     private final PetDto testPetDto = PetDto.builder().name("Test Pet").species("dog").build();
-
-    private User createAndSaveTestUser() {
-        User testUser = new User.Builder()
-                .email("test@test.com")
-                .signupType(SignUpType.EMAIL)
-                .password("testpassword")
-                .username("testusername")
-                .build();
-        return this.userRepository.save(testUser);
-    }
 
     @Test
     public void createPet_NonExistentUserId_throwException() {
@@ -66,9 +36,9 @@ public class PetServiceDBIntegrationTest {
     }
 
     @Test
-    @Rollback
+    @Transactional
     public void createPet_returnPetDto() {
-        User savedUser = this.createAndSaveTestUser();
+        User savedUser = super.createAndSaveTestUser(this.userRepository);
 
         PetDto savedPet = this.petService.createPet(this.testPetDto, savedUser.getId());
 
@@ -84,9 +54,9 @@ public class PetServiceDBIntegrationTest {
     }
 
     @Test
-    @Rollback
+    @Transactional
     public void updatePet_OwnerIdDoesNotMatch_throwException() {
-        User savedUser = this.createAndSaveTestUser();
+        User savedUser = super.createAndSaveTestUser(this.userRepository);
 
         Pet savedPet = this.petRepository.save(Pet.fromPetDto(this.testPetDto, savedUser.getId()));
         PetDto newDto = PetDto.builder()
@@ -101,9 +71,9 @@ public class PetServiceDBIntegrationTest {
     }
 
     @Test
-    @Rollback
+    @Transactional
     public void updatePet_ReturnPetDto() {
-        User savedUser = this.createAndSaveTestUser();
+        User savedUser = super.createAndSaveTestUser(this.userRepository);
 
         Pet savedPet = this.petRepository.save(Pet.fromPetDto(this.testPetDto, savedUser.getId()));
         PetDto newDto = PetDto.builder()
@@ -119,4 +89,3 @@ public class PetServiceDBIntegrationTest {
     }
 
 }
-

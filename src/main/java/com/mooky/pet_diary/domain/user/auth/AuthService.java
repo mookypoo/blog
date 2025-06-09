@@ -10,12 +10,12 @@ import com.mooky.pet_diary.domain.user.User;
 import com.mooky.pet_diary.domain.user.User.SignUpType;
 import com.mooky.pet_diary.domain.user.auth.dto.EmailLoginReq;
 import com.mooky.pet_diary.domain.user.auth.dto.GoogleLoginReq;
+import com.mooky.pet_diary.domain.user.auth.dto.UserDto;
 import com.mooky.pet_diary.domain.user.auth.dto.UserSignUpReq;
-import com.mooky.pet_diary.domain.user.dto.UserDto;
 import com.mooky.pet_diary.domain.user.repository.UserRepository;
 import com.mooky.pet_diary.global.config.AppConfig;
-import com.mooky.pet_diary.global.exception.ApiException.AuthException;
-import com.mooky.pet_diary.global.exception.ApiException.InUseException;
+import com.mooky.pet_diary.global.exception.AuthException;
+import com.mooky.pet_diary.global.exception.InUseException;
 import com.mooky.pet_diary.global.security.JwtService;
 
 import lombok.RequiredArgsConstructor;
@@ -47,14 +47,13 @@ public class AuthService {
         return !this.userRepository.existsByUsername(username);
     }
     
-
     public UserDto signUpByEmail(UserSignUpReq req) {
         if (this.userRepository.existsByEmail(req.getEmail())) {
-            throw new InUseException("email_in_use", "이미 사용중인 이메일입니다", req.getEmail(), null);
+            throw InUseException.resource("email", req.getEmail());
         }
 
         if (this.userRepository.existsByUsername(req.getUsername())) {
-            throw new InUseException("username_in_use", "이미 사용중인 이름입니다", req.getUsername(), null);
+            throw InUseException.resource("username", req.getUsername());
         }
 
         User userReq = new User.Builder().agreedMarketingTerms(req.isAgreeToMarketing())
@@ -65,14 +64,15 @@ public class AuthService {
                 .build();
 
         User savedUser = this.userRepository.save(userReq);
-        String accessToken = this.jwtService.generateToken(savedUser);
-        return new UserDto(savedUser, accessToken);
+        String accessToken = this.jwtService.generateAccessToken(savedUser.getId());
+        String refreshToken = this.jwtService.generateRefreshToken(savedUser.getId());
+        return new UserDto(savedUser.getId(), accessToken, refreshToken);
     }
 
     public UserDto signUpByGoogle(UserSignUpReq req) {
         // google already checks existsByEmail before sign up page
         if (this.userRepository.existsByUsername(req.getUsername())) {
-            throw new InUseException("username_in_use", "이미 사용중인 이름입니다", req.getUsername(), null);
+            throw InUseException.resource("username", req.getUsername());
         }
 
         Payload payload = this.googleTokenService.verifyGoogleIdToken(req.getGoogleIdToken());
@@ -85,22 +85,24 @@ public class AuthService {
                 .build();
 
         User savedUser = this.userRepository.save(userReq);
-        String accessToken = this.jwtService.generateToken(savedUser);
-        return new UserDto(savedUser, accessToken);
+        String accessToken = this.jwtService.generateAccessToken(savedUser.getId());
+        String refreshToken = this.jwtService.generateRefreshToken(savedUser.getId());
+        return new UserDto(savedUser.getId(), accessToken, refreshToken);
     }
 
     
     public UserDto emailLogin(EmailLoginReq req) {
         User user = this.userRepository.findByEmail(req.getEmail())
-            .orElseThrow(() -> {
-                    throw new AuthException("incorrect_email", "이메일을 찾을 수 없습니다", req.getEmail(), "로그인 실패");
+                .orElseThrow(() -> {
+                    throw AuthException.invalidLogin("이메일을 찾을 수 없습니다", req.getEmail(), "로그인 실패");
                 });
         boolean hasCorrectPw = this.doesEncryptedMatchValue(req.getPassword(), user.getPassword());
         if (!hasCorrectPw) {
-            throw new AuthException("incorrect_pw", "잘못된 비밀번호입니다", req.getEmail(), "로그인 실패");
+            throw AuthException.invalidLogin("잘못된 비밀번호입니다", req.getEmail(), "로그인 실패");
         }
-        String accessToken = this.jwtService.generateToken(user);
-        return new UserDto(user, accessToken);
+        String accessToken = this.jwtService.generateAccessToken(user.getId());
+        String refreshToken = this.jwtService.generateRefreshToken(user.getId());
+        return new UserDto(user.getId(), accessToken, refreshToken);
     }
 
     private String encryptPW(String pw) {
@@ -124,8 +126,10 @@ public class AuthService {
         if (!userOpt.isPresent()) {
             return null;
         } else {
-            String accessToken = this.jwtService.generateToken(userOpt.get());
-            return new UserDto(userOpt.get(), accessToken);
+            Long userId = userOpt.get().getId();
+            String accessToken = this.jwtService.generateAccessToken(userId);
+            String refreshToken = this.jwtService.generateRefreshToken(userId);
+            return new UserDto(userId, accessToken, refreshToken);
         }
     }
 

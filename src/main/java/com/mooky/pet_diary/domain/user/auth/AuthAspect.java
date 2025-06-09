@@ -5,7 +5,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import com.mooky.pet_diary.domain.user.dto.UserDto;
+import com.mooky.pet_diary.domain.user.auth.dto.UserDto;
 import com.mooky.pet_diary.domain.user.repository.UserRepository;
 import com.mooky.pet_diary.global.ApiResponse;
 
@@ -21,10 +21,10 @@ public class AuthAspect {
 
     private final UserRepository userRepository;
 
-    @Pointcut("execution(* com.mooky.blog.domain.user.auth.AuthController.signUpByEmail(..))")
+    @Pointcut("execution(* com.mooky.pet_diary.domain.user.auth.AuthController.signUpByEmail(..))")
     public void signUpByEmail() {}
     
-    @Pointcut("execution(* com.mooky.blog.domain.user.auth.AuthController.signUpByGoogle(..))")
+    @Pointcut("execution(* com.mooky.pet_diary.domain.user.auth.AuthController.signUpByGoogle(..))")
     public void signUpByGoogle() {}
     
     @AfterReturning(value = "signUpByEmail() || signUpByGoogle()", returning = "res")
@@ -32,11 +32,11 @@ public class AuthAspect {
         log.info("[회원가입] {}", res.toString());
     }
 
-    @Pointcut("execution(* com.mooky.blog.domain.user.auth.AuthController.emailLogin(..))")
+    @Pointcut("execution(* com.mooky.pet_diary.domain.user.auth.AuthController.emailLogin(..))")
     public void emailLogin() {
     }
 
-    @Pointcut("execution(* com.mooky.blog.domain.user.auth.AuthController.googleLogin(..))")
+    @Pointcut("execution(* com.mooky.pet_diary.domain.user.auth.AuthController.googleLogin(..))")
     public void googleLogin() {}
 
     // Aspect로 바꾼 이유

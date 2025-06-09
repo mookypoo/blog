@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.mooky.pet_diary.global.exception.ApiException.InvalidArgsException;
+import com.mooky.pet_diary.global.exception.InvalidArgumentException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,14 +44,17 @@ public class S3Service {
     public String createPresignedUrl(S3UploadReq req, String type, Long userId) {
 
         if (!this.allowedFileTypes.contains(req.getFileType())) {
-            throw new InvalidArgsException(
-                "invalid_filetype", 
-                "needs to be one of the following values: image/jpeg, image/jpg, image/png, or image/webp",
-                    req.getFileType(), null);
+            throw InvalidArgumentException.type(
+                        "filetype", 
+                        "needs to be one of the following values: image/jpeg, image/jpg, image/png, or image/webp",
+                        req.getFileType());
         }
 
         if (!this.allowedTypes.contains(type)) {
-            throw new InvalidArgsException("invalid_type", "type query parameter is invalid", type, null);
+            throw InvalidArgumentException.type(
+                    "type",
+                    "type query parameter is invalid",
+                    type);
         }
 
         try {

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mooky.pet_diary.domain.user.auth.dto.EmailLoginReq;
 import com.mooky.pet_diary.domain.user.auth.dto.GoogleLoginReq;
+import com.mooky.pet_diary.domain.user.auth.dto.UserDto;
 import com.mooky.pet_diary.domain.user.auth.dto.UserSignUpReq;
 import com.mooky.pet_diary.domain.user.constraints.groups.GoogleSignUpInfo;
 import com.mooky.pet_diary.domain.user.constraints.groups.Password;
 import com.mooky.pet_diary.domain.user.constraints.groups.UserEmail;
 import com.mooky.pet_diary.domain.user.constraints.groups.UserSignUpInfo;
 import com.mooky.pet_diary.domain.user.constraints.groups.Username;
-import com.mooky.pet_diary.domain.user.dto.UserDto;
 import com.mooky.pet_diary.global.ApiResponse;
 
 import jakarta.validation.Valid;
@@ -29,11 +29,6 @@ import lombok.RequiredArgsConstructor;
 public class AuthController {
 
     private final AuthService authService;
-
-    @PostMapping("/cool")
-    public ApiResponse test() {
-        return ApiResponse.ok("cool");
-    }
 
     @PostMapping("/signup/email")
     public ApiResponse signUpByEmail(

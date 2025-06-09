@@ -1,0 +1,91 @@
+2025-06-08 14:47:24,079 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-06-08 14:48:03,917 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-06-08 14:50:31,924 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-06-08 14:51:02,656 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 8d8f624a-4264-456a-b677-ec62fb1d7879
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 14:51:46,749 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: b10855be-4e8c-440b-8880-c95ae45eb7b9
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 14:52:05,351 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-06-08 15:16:13,987 WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userController' defined in file [/Users/soo/Desktop/Portfolio/pet_diary/build/classes/java/main/com/mooky/pet_diary/domain/user/UserController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userService' defined in file [/Users/soo/Desktop/Portfolio/pet_diary/build/classes/java/main/com/mooky/pet_diary/domain/user/UserService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.mooky.pet_diary.domain.user.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.Optional com.mooky.pet_diary.domain.user.repository.UserRepository.getUserDetails(java.lang.Long); Reason: Validation failed for query for method public abstract java.util.Optional com.mooky.pet_diary.domain.user.repository.UserRepository.getUserDetails(java.lang.Long)
+2025-06-08 15:47:50,319 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 90c1e9ba-68c9-43f7-b644-c39e3c300a0d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 15:55:27,441 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: bb602a51-7600-495c-ad42-b9c3aaf93bd5
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 15:55:32,093 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-2] [Auth Error] error=auth_error, errorCode=AUTH_003, errorMessage=Cannot invoke "java.util.Date.toString()" because "expirationDate" is null
+2025-06-08 15:57:58,518 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: e37a713c-b688-41c4-8f17-101508d56087
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 15:58:02,370 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-1] [Auth Error] error=auth_error, errorCode=AUTH_003, errorMessage=Cannot invoke "Object.toString()" because the return value of "io.jsonwebtoken.Claims.get(Object)" is null
+2025-06-08 15:59:57,952 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 882265b4-15eb-4b0e-b9cb-5d567304c8f2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 16:00:57,197 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-3] [Auth Error] error=auth_error, errorCode=AUTH_003, errorMessage=Cannot invoke "java.util.Date.toString()" because "expirationDate" is null
+2025-06-08 16:03:01,071 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 5c19bce2-d8f2-469b-b8c9-b5f94c5f95e8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 16:03:17,209 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-3] [Auth Error] error=auth_error, errorCode=AUTH_003, errorMessage=JWT expired 13206 milliseconds ago at 2025-06-08T07:03:04.000Z. Current time: 2025-06-08T07:03:17.206Z. Allowed clock skew: 0 milliseconds.
+2025-06-08 16:04:14,497 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 00c23069-bd22-4795-9829-eba6f355dfa2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 16:04:16,181 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-2] [Auth Error] error=auth_error, errorCode=AUTH_003, errorMessage=JWT expired 72166 milliseconds ago at 2025-06-08T07:03:04.000Z. Current time: 2025-06-08T07:04:16.166Z. Allowed clock skew: 0 milliseconds.
+2025-06-08 16:47:27,852 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: dc2a79b4-5d09-4dd6-b272-3b22c666e2fe
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 16:47:31,611 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-2] [Auth Error] error=auth_error, errorCode=AUTH_002, errorMessage=expired jwt token, please send refresh token to server
+2025-06-08 17:21:07,618 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: bdae4e9b-f097-467e-8b2f-f7bd6b55ec60
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 17:22:15,439 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 1c659436-d90a-409b-85bc-792eac102482
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 17:22:16,820 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-1] [Auth Error] error=auth_exception, errorCode=AUTH_005, errorMessage=expired jwt token, please send refresh token to server
+2025-06-08 17:23:45,069 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 0761fd25-8a7c-45ec-b106-839b4f0b8efa
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-08 17:23:51,582 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-3] [Auth Error] error=auth_error, errorCode=AUTH_001, errorMessage=no jwt token
+2025-06-08 23:49:56,376 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: f0c1a8f9-6d61-4b0f-b843-ce0882aca0cf
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+

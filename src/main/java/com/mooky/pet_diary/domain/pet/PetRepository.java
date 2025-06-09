@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.mooky.pet_diary.domain.pet.dto.PetDto;
 
-// TODO modifiedAt
 public interface PetRepository extends JpaRepository<Pet, Long> {
     
     @Modifying

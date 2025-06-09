@@ -1,4 +1,4 @@
-package com.mooky.blog.domain.user;
+package com.mooky.pet_diary.domain.user;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;

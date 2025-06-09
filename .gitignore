@@ -39,3 +39,8 @@ out/
 
 ### dev ###
 **/src/main/resources/secrets.yml
+
+
+### macOS system file ###
+.DS_Store
+.DS_Store?

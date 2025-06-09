@@ -1,0 +1,15 @@
+2025-06-09 00:07:03,688 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-2] [AuthException] error=auth_exception, errorCode=AUTH_003, errorMessage=missing jwt token
+2025-06-09 00:07:08,967 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-3] [HttpRequest] [GET] /v1/users/me [userId=1, requestId=postman] 
+2025-06-09 00:07:20,960 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-4] [AuthException] error=auth_exception, errorCode=AUTH_003, errorMessage=missing jwt token
+2025-06-09 00:07:25,467 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-5] [AuthException] error=auth_exception, errorCode=AUTH_006, errorMessage=please contact the server
+2025-06-09 00:08:36,714 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-1] [AuthException] error=auth_exception, errorCode=AUTH_006, errorMessage=please contact the server
+2025-06-09 00:13:07,169 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-1] [AuthException] error=auth_exception, errorCode=AUTH_004, errorMessage=Invalid compact JWT string: Compact JWSs must contain exactly 2 period characters, and compact JWEs must contain exactly 4.  Found: 0
+2025-06-09 00:16:46,296 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-1] [HttpRequest] [GET] /v1/pets/2 [userId=1, requestId=postman] 
+2025-06-09 00:17:04,910 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-3] [AuthException] error=auth_exception, errorCode=AUTH_003, errorMessage=missing jwt token
+2025-06-09 00:17:15,720 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-4] [HttpRequest] [GET] /v1/pets/1 [userId=1, requestId=postman] 
+2025-06-09 00:17:15,745 WARN c.m.p.g.e.ApiExceptionHandler.handleApiException [http-nio-8080-exec-4] [NotFoundException] [errorValue=1, error=pet_not_found, errorMessage=no pet with id: 1, errorCode=COM_004] [com.mooky.pet_diary.domain.pet.PetService.lambda$getPetDetails$0(PetService.java:28)]
+2025-06-09 00:21:09,321 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-2] [HttpRequest] [GET] /v1/pets/1 [userId=1, requestId=postman] 
+2025-06-09 00:21:09,374 WARN c.m.p.g.e.ApiExceptionHandler.handleApiException [http-nio-8080-exec-2] [NotFoundException] [errorValue=1, error=pet_not_found, errorMessage=no pet with id: 1, errorCode=COM_004] [com.mooky.pet_diary.domain.pet.PetService.lambda$getPetDetails$0(PetService.java:28)]
+2025-06-09 00:21:16,452 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-3] [HttpRequest] [GET] /v1/pets/3 [userId=1, requestId=postman] 
+2025-06-09 00:21:23,758 INFO c.m.p.global.config.HttpLogger.logHttpRequest [http-nio-8080-exec-4] [HttpRequest] [GET] /v1/pets/4 [userId=1, requestId=postman] 
+2025-06-09 00:21:23,762 WARN c.m.p.g.e.ApiExceptionHandler.handleApiException [http-nio-8080-exec-4] [NotFoundException] [errorValue=4, error=pet_not_found, errorMessage=no pet with id: 4, errorCode=COM_004] [com.mooky.pet_diary.domain.pet.PetService.lambda$getPetDetails$0(PetService.java:28)]

@@ -1,0 +1,45 @@
+2025-06-09 00:04:37,134 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 956a151a-a5bf-476d-a622-5be6670e1a3d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-09 00:07:00,627 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 8415f05d-56b9-40ce-8c0f-64e2c7a9ff05
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-09 00:07:03,688 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-2] [AuthException] error=auth_exception, errorCode=AUTH_003, errorMessage=missing jwt token
+2025-06-09 00:07:20,960 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-4] [AuthException] error=auth_exception, errorCode=AUTH_003, errorMessage=missing jwt token
+2025-06-09 00:07:25,467 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-5] [AuthException] error=auth_exception, errorCode=AUTH_006, errorMessage=please contact the server
+2025-06-09 00:08:34,242 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: a1b857e8-3249-4939-8388-505e36f97974
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-09 00:08:36,714 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-1] [AuthException] error=auth_exception, errorCode=AUTH_006, errorMessage=please contact the server
+2025-06-09 00:13:03,210 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 213d5f71-2926-4888-b677-6be1565ba831
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-09 00:13:07,169 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-1] [AuthException] error=auth_exception, errorCode=AUTH_004, errorMessage=Invalid compact JWT string: Compact JWSs must contain exactly 2 period characters, and compact JWEs must contain exactly 4.  Found: 0
+2025-06-09 00:16:44,970 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: 0a807556-f591-457d-bab7-93f2a581c698
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-09 00:17:04,910 WARN c.m.p.global.security.JwtAuthFilter.setErrorResponse [http-nio-8080-exec-3] [AuthException] error=auth_exception, errorCode=AUTH_003, errorMessage=missing jwt token
+2025-06-09 00:17:15,745 WARN c.m.p.g.e.ApiExceptionHandler.handleApiException [http-nio-8080-exec-4] [NotFoundException] [errorValue=1, error=pet_not_found, errorMessage=no pet with id: 1, errorCode=COM_004] [com.mooky.pet_diary.domain.pet.PetService.lambda$getPetDetails$0(PetService.java:28)]
+2025-06-09 00:21:06,152 WARN o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.getOrDeducePassword [main] 
+
+Using generated security password: f830dd7a-514a-4878-8672-29823414a8a7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-09 00:21:09,374 WARN c.m.p.g.e.ApiExceptionHandler.handleApiException [http-nio-8080-exec-2] [NotFoundException] [errorValue=1, error=pet_not_found, errorMessage=no pet with id: 1, errorCode=COM_004] [com.mooky.pet_diary.domain.pet.PetService.lambda$getPetDetails$0(PetService.java:28)]
+2025-06-09 00:21:23,762 WARN c.m.p.g.e.ApiExceptionHandler.handleApiException [http-nio-8080-exec-4] [NotFoundException] [errorValue=4, error=pet_not_found, errorMessage=no pet with id: 4, errorCode=COM_004] [com.mooky.pet_diary.domain.pet.PetService.lambda$getPetDetails$0(PetService.java:28)]

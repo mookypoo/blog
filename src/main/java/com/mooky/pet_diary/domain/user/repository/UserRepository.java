@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.mooky.pet_diary.domain.user.User;
-import com.mooky.pet_diary.domain.user.dto.UserDto;
 import com.mooky.pet_diary.domain.user.dto.UserWithPetSummaryProjection;
 
 import jakarta.transaction.Transactional;
@@ -21,10 +20,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT CASE WHEN EXISTS (SELECT 1 FROM User u WHERE u.username = :username) THEN true ELSE false END")
     boolean existsByUsername(@Param("username") String username);
-
-    // TODO remove
-    @Query("SELECT new com.mooky.pet_diary.domain.user.dto.UserDto(u.id, u.username, u.email) FROM User u WHERE u.id = :userId")
-    Optional<UserDto> getUserDetails(@Param("userId") Long userId);
 
     Optional<User> findByEmail(String email);
 
