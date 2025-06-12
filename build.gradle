@@ -59,7 +59,11 @@ dependencies {
 	testImplementation 'io.rest-assured:rest-assured'
 }
 
-
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+compileJava {
+    options.compilerArgs += '-parameters'
+    println "Compiler args: ${options.compilerArgs}"
 }

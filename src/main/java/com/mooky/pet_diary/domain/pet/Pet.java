@@ -45,6 +45,10 @@ public class Pet {
 
     private String profilePhoto;
 
+    private Float weight;
+
+    private String weightUnit;
+
     private LocalDateTime modifiedAt;
 
     public static Pet fromPetDto(PetDto petDto, Long ownerId) {

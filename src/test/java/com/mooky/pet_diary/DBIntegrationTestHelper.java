@@ -19,7 +19,7 @@ public abstract class DBIntegrationTestHelper {
             .withDatabaseName("pet_diary_test")
             .withUsername("testuser")
             .withPassword("testpassword")
-            .withInitScript("schema.sql");
+            .withInitScript("test-schema.sql");
 
     @DynamicPropertySource
     public static void configureProperties(DynamicPropertyRegistry registry) {

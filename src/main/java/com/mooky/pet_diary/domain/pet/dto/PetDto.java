@@ -41,6 +41,8 @@ public class PetDto {
     private final LocalDate adoptionDate;
     private final String description;
     private final String profilePhoto;
+    private final Float weight;
+    private final String weightUnit; // kg or lbs
 
     public static PetDto fromEntity(Pet pet) {
         return PetDto.builder()
@@ -51,6 +53,8 @@ public class PetDto {
                 .adoptionDate(pet.getAdoptionDate())
                 .description(pet.getDescription())
                 .profilePhoto(pet.getProfilePhoto())
+                .weight(pet.getWeight())
+                .weightUnit(pet.getWeightUnit())
                 .build();
     }
 

@@ -9,12 +9,19 @@ public class NotFoundException extends ApiException {
 
     public static NotFoundException resource(String resource, String errorMessage, String errorValue) {
         String error = resource + "_not_found";
-        return new NotFoundException(error, errorMessage, "COM_003", errorValue, null, 404);
+        return new NotFoundException(error, errorMessage, errorValue, null);
     }
 
-    private NotFoundException(String error, String errorMessage, String errorCode, String errorValue, String errorTitle,
-            int statusCode) {
-        super(error, errorMessage, errorCode, errorValue, errorTitle, statusCode);
+    public static NotFoundException matchingPetAndOwner(Long petId, Long userId) {
+        return new NotFoundException(
+            "pet_not_found", 
+            "either no pet found or not its owner", 
+            "petId=" + petId + " userId=" + userId,
+            null);
+    }
+
+    private NotFoundException(String error, String errorMessage, String errorValue, String errorTitle) {
+        super(error, errorMessage, "COM_003", errorValue, errorTitle, 404);
     }
 
 }

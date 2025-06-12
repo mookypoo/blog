@@ -31,3 +31,4 @@ create or replace table pet_diary.pet
     constraint FK_pet_user_id foreign key (owner_id) references pet_diary.usr (user_id)
 )
     comment '반려동물 마스터 테이블';
+

@@ -31,6 +31,7 @@ public class PetService {
         return PetDto.fromEntity(savedPet);
     }
 
+    //  TODO check test and change to NotFoundException.matchingPetAndOwner
     @Transactional
     public PetDto updatePet(Long petId, PetDto petDto, Long currentUserId) {
         int updatedRow = this.petRepository.updatePet(petId, currentUserId, petDto);
